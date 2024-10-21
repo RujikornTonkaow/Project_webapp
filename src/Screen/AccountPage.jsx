@@ -84,7 +84,7 @@ function AccountPage() {
                     <label>Phone Number</label>
                     <label>{userData.tel}</label>
                 </div>
-                <button className='button-history'>Booking History</button>
+                <button className='button-history' onClick={goToBookingHistory}>Booking History</button>
 
             </div>
         </div >
