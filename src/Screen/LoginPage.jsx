@@ -64,7 +64,7 @@ function LoginPage() {
                 navigate('/home'
                 );
             } else if (role === 'admin') {
-                navigate('/settime');
+                navigate('/adminhome');
             }
         }).catch((error) => {
             console.error('Error during login:', error);
