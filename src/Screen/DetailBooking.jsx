@@ -2,24 +2,25 @@ import React, { useState, useEffect } from 'react';
 import './Style/detailbooking.css';
 import { useNavigate } from 'react-router-dom';
 
+
 function DetailBooking() {
     const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState(false);
     const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
+        navigate(path); 
     };
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
-    const [showLogout, setShowLogout] = useState(false);
+
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
             setUserData(storedUser);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
             navigate('/first');
         }
     }, [navigate]);
 
+    
     // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
@@ -92,7 +93,7 @@ function DetailBooking() {
                 <tbody>
                     <tr>
                         <td>A-01</td>
-                        <td>Rujikorn Limtrakul</td>
+                        <td>{userData.user}</td>
                         <td>15/09/2023</td>
                         <td>21:45</td>
                         <td>093-232-2332</td>

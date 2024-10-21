@@ -78,6 +78,16 @@ app.get("/table", (req, res) => {
   });
 });
 
+app.get('/time', function (req, res) {
+  db.query("SELECT * FROM timedb_dtp", function (err, result, fields) {
+    if (err) {
+      return res.status(400).send('Not found');
+    }
+    console.log(result);
+    res.send(result);
+  });
+})
+
 app.post("/register", (req, res) => {
   const { user, password, tel, role } = req.body;
 
