@@ -3,6 +3,7 @@ import './Style/detailbooking.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 
+
 function DetailBooking() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -11,7 +12,7 @@ function DetailBooking() {
     const [bookings, setBookings] = useState([]);//เก็บค่าข้อมูลในdbตาม name
     const [showDropdown, setShowDropdown] = useState(false);
     const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
+        navigate(path); 
     };
 
     useEffect(() => {
@@ -19,7 +20,6 @@ function DetailBooking() {
         if (storedUser) {
             setUserData(storedUser);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
             navigate('/first');
         }
         Axios.get(`http://localhost:5000/api/bookings/${name}`)
@@ -34,7 +34,6 @@ function DetailBooking() {
                 }
             });
     }, [navigate, name]);
-
     function handleCancelBooking(id) {
         Axios.delete(`http://localhost:5000/api/delbookings/${id}`)
             .then(response => {
@@ -45,6 +44,7 @@ function DetailBooking() {
                 console.log("error");
             });
     }
+
     // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
@@ -140,8 +140,35 @@ function DetailBooking() {
             ) : (
                 <p className="no-data">ไม่มีข้อมูลการจอง</p>
             )}
+
+            <table className="detail-table">
+                <thead>
+                    <tr>
+                        <th>Table</th>
+                        <th>Name</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Phone</th>
+                        <th>Cancel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A-01</td>
+                        <td>{userData.user}</td>
+                        <td>15/09/2023</td>
+                        <td>21:45</td>
+                        <td>093-232-2332</td>
+                        <td>
+                            <button className="cancel-button">Cancel</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
             <button className="home-button" onClick={() => handleNavClick('/home')}>Home</button>
 
+            
             {/* </header> */}
             {/* <section className='detail-table'>
                 <h1>hihihihi</h1>

@@ -154,6 +154,7 @@ const SetTime = () => {
                             name="phone"
                             value={userData.tel}
                             onChange={handleChange}
+                            disabled
                         />
                     </div>
                     <button type="submit" className="submit-btn" onClick={handleTable}>
