@@ -23,33 +23,33 @@ function DetailBooking() {
             // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
             navigate('/first');
         }
-        // Axios.get(`http://localhost:5000/api/bookings/${userData.user}`)
-        //     .then(response => {
-        //         setBookings(response.data);//เก็บค่าข้อมูลในdbตาม name
-        //     })
-        //     .catch(error => {
-        //         if (error.response && error.response.status === 404) {
-        //             setBookings([]); // ถ้าbookings เป็น empty เพื่อแสดงข้อความ "ไม่มีข้อมูลการจอง"
-        //         } else {
-        //             console.log("Error fetching booking data:", error);
-        //         }
-        //     });
-    }, [navigate]);
-    useEffect(() => {
-        if (userData.user) { // ตรวจสอบว่ามีค่า userData.user ก่อนที่จะเรียก API
-            Axios.get(`http://localhost:5000/api/bookings/${userData.user}`) // ใช้ template literal
-                .then(response => {
-                    setBookings(response.data); // เก็บข้อมูลการจอง
-                })
-                .catch(error => {
-                    if (error.response && error.response.status === 404) {
-                        setBookings([]); // ถ้าไม่มีข้อมูลจะแสดงว่า bookings เป็น empty array
-                    } else {
-                        console.log("Error fetching booking data:", error);
-                    }
-                });
-        }
-    }, [userData.user]);
+        Axios.get(`http://localhost:5000/api/bookings/${userData.user}`)
+            .then(response => {
+                setBookings(response.data);//เก็บค่าข้อมูลในdbตาม name
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 404) {
+                    setBookings([]); // ถ้าbookings เป็น empty เพื่อแสดงข้อความ "ไม่มีข้อมูลการจอง"
+                } else {
+                    console.log("Error fetching booking data:", error);
+                }
+            });
+    }, [navigate,userData.user]);
+    // useEffect(() => {
+    //     if (userData.user) { // ตรวจสอบว่ามีค่า userData.user ก่อนที่จะเรียก API
+    //         Axios.get(`http://localhost:5000/api/bookings/${userData.user}`) // ใช้ template literal
+    //             .then(response => {
+    //                 setBookings(response.data); // เก็บข้อมูลการจอง
+    //             })
+    //             .catch(error => {
+    //                 if (error.response && error.response.status === 404) {
+    //                     setBookings([]); // ถ้าไม่มีข้อมูลจะแสดงว่า bookings เป็น empty array
+    //                 } else {
+    //                     console.log("Error fetching booking data:", error);
+    //                 }
+    //             });
+    //     }
+    // }, [userData.user]);
     const handleCancelBooking = (id) => {
         Axios.delete(`http://localhost:5000/api/delbookings/${id}`)
             .then(response => {
