@@ -40,7 +40,7 @@ function AccountPage() {
         // นำทางกลับไปหน้า login
         navigate('/first');
     };
-
+ 
     const handleNavClick = (path) => {
         navigate(path); // Navigate to the given path
     };

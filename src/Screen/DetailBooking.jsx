@@ -14,7 +14,7 @@ function DetailBooking() {
     const handleNavClick = (path) => {
         navigate(path); 
     };
-
+ 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
