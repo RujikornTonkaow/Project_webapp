@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Style/detailbooking.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Axios from 'axios';
 
 function DetailBooking() {
     const navigate = useNavigate();
-    const location = useLocation();
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     // const [names, setNames] = useState("");
 
@@ -157,38 +156,7 @@ function DetailBooking() {
             )}
             <button className="home-button" onClick={() => handleNavClick('/home')}>Home</button>
 
-            {/* </header> */}
-            {/* <section className='detail-table'>
-                <h1>hihihihi</h1>
-            </section> */}
-            {/* <table className='detail-table'>
-                <tr>
-                    <th className='detail-item'>Table</th>
-                    <th>Name</th>
-                    <th>Day</th>
-                    <th>Time</th>
-                    <th>Phone</th>
-                    <th>Cancel</th>
-
-                </tr>
-                <tr>
-                    <td>A-01</td>
-                    <td>A-01</td>
-                    <td>A-01</td>
-                    <td>A-01</td>
-                    <td>A-01</td>
-                    <td>A-01</td>
-
-                </tr>
-            </table> */}
-            {/* <section className="detail-items">
-        <div className="detail-item">
-          <img src="5.jpg" alt="Spaghetti Carbonara" />
-          <p>สปาเก็ตตี้คาโบนาร่า</p>
-          <span>250 THB</span>
-        </div>
-        
-      </section> */}
+            
         </div>
     );
 }
