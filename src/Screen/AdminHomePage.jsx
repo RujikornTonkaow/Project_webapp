@@ -60,7 +60,7 @@ function AdminHomePage() {
                     <li className="navItem"><a href="#adminhome" className='active' onClick={() => handleNavClick('/adminhome')}>Home</a></li>
                     <li className="navItem"><a href="#about" onClick={() => handleNavClick('/about')}>About</a></li>
                     <li className="navItem"><a href="#menu" onClick={() => handleNavClick('/menupage')}>Recommended Menu</a></li>
-                    <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
+                    <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
                     <li className="navItem"><a href="#admindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
                 </ul>
                 {/* <button className="home-tag">{userData.user}</button> */}
