@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './Style/detailbooking.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Axios from 'axios';
 
 
 function DetailBooking() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { table, day, time, time_end, name, phone } = location.state || {}; // ดึงข้อมูลโต๊ะที่เลือกจาก state
+    const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
+    const [bookings, setBookings] = useState([]);//เก็บค่าข้อมูลในdbตาม name
     const [showDropdown, setShowDropdown] = useState(false);
     const handleNavClick = (path) => {
         navigate(path); 
     };
-    const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -18,9 +22,29 @@ function DetailBooking() {
         } else {
             navigate('/first');
         }
-    }, [navigate]);
+        Axios.get(`http://localhost:5000/api/bookings/${name}`)
+            .then(response => {
+                setBookings(response.data);//เก็บค่าข้อมูลในdbตาม name
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 404) {
+                    setBookings([]); // ถ้าbookings เป็น empty เพื่อแสดงข้อความ "ไม่มีข้อมูลการจอง"
+                } else {
+                    console.log("Error fetching booking data:", error);
+                }
+            });
+    }, [navigate, name]);
+    function handleCancelBooking(id) {
+        Axios.delete(`http://localhost:5000/api/delbookings/${id}`)
+            .then(response => {
+                if (response.data.status === "ok") alert("Delete Booking sucessfully!");
+                setBookings(response.data.bookings);
+            })
+            .catch(error => {
+                console.log("error");
+            });
+    }
 
-    
     // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
@@ -46,6 +70,8 @@ function DetailBooking() {
         navigate('/first');
     };
 
+
+ 
     return (
         <div className="detail-container">
             {/* <header className="menu-header"> */}
@@ -79,6 +105,42 @@ function DetailBooking() {
             </nav>
 
             <h2 className="detail-title">Detail Booking</h2>
+            {bookings.length > 0 ? (
+                <table className="detail-table">
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Name</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Phone</th>
+                            <th>Cancel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bookings.map((booking) => (
+                            <tr key={booking.id}>
+                                <td>{booking.table_no}</td>
+                                <td>{booking.user}</td>
+                                <td>{booking.day}</td>
+                                <td>{booking.time_in}</td>
+                                <td>{booking.tel}</td>
+                                <td>
+                                    <button
+                                        className="cancel-button"
+                                        onClick={() => handleCancelBooking(booking.id)}
+                                    >
+                                        Cancel
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p className="no-data">ไม่มีข้อมูลการจอง</p>
+            )}
+
             <table className="detail-table">
                 <thead>
                     <tr>
@@ -103,8 +165,10 @@ function DetailBooking() {
                     </tr>
                 </tbody>
             </table>
+
             <button className="home-button" onClick={() => handleNavClick('/home')}>Home</button>
 
+            
             {/* </header> */}
             {/* <section className='detail-table'>
                 <h1>hihihihi</h1>

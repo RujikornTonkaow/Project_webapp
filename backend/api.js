@@ -135,7 +135,7 @@ app.post('/login', (req, res) => {
 
     // const userData = results[0];
     const user = results[0].user;
-    const tel = results[0].tel; 
+    const tel = results[0].tel;
     const storedHashedPassword = results[0].password;
     // เปรียบเทียบรหัสผ่านกับ hash ที่เก็บไว้
     bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
@@ -145,9 +145,9 @@ app.post('/login', (req, res) => {
       }
 
       if (!isMatch) {
-        res.status(200).json({ 
+        res.status(200).json({
           message: 'Login successful',
-          user: user, 
+          user: user,
           role: results[0].role,
           tel: tel
         });
@@ -159,22 +159,75 @@ app.post('/login', (req, res) => {
 });
 
 app.post("/tablebooking", (req, res) => {
-  const { table_no,  user, tel, day ,time_in ,time_out } = req.body;
+  const { table_no, user, tel, day, time_in, time_out } = req.body;
 
 
-    // คำสั่ง SQL ในการแทรกข้อมูลผู้ใช้ใหม่ลงในฐานข้อมูล
-    const query = "INSERT INTO timedb_dtp (table_no , user , tel , day , time_in , time_out) VALUES (?, ?, ?, ?,?,?)";
+  // คำสั่ง SQL ในการแทรกข้อมูลผู้ใช้ใหม่ลงในฐานข้อมูล
+  const query = "INSERT INTO timedb_dtp (table_no , user , tel , day , time_in , time_out) VALUES (?, ?, ?, ?,?,?)";
 
-    db.query(query, [table_no, user, tel, day, time_in, time_out], (err, results) => {
+  db.query(query, [table_no, user, tel, day, time_in, time_out], (err, results) => {
+    if (err) {
+      console.error("Error inserting data into MySQL:", err);
+      return res.status(500).json({ error: "Failed to book table" });
+    }
+
+    res.status(200).json({ message: "Table booked successfully!" });
+  });
+});
+// API สำหรับดึงข้อมูลการจองตามชื่อผู้ใช้
+app.get('/api/bookings/:user', (req, res) => {
+  const { user } = req.params;
+  const query = "SELECT * FROM timedb_dtp WHERE user = ?";
+  db.query(query, [user], (err, results) => {
+    if (err) {
+      console.error("Error fetching booking data:", err);
+      return res.status(500).json({ error: "Failed to fetch booking data" });
+    }
+    
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No bookings found" }); // ส่งสถานะ 404 ถ้าไม่มีข้อมูล
+    }
+    
+    res.status(200).json(results);
+  });
+});
+
+// API สำหรับลบการจองตาม id
+app.delete('/api/delbookings/:id', (req, res) => {
+  const id = req.params.id;
+  const query = 'DELETE FROM timedb_dtp WHERE id = ?'; // ใช้ '?' เพื่อป้องกัน SQL Injection
+
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting booking:", err);
+      return res.status(500).json({ error: "Failed to delete booking" });
+    }
+
+    // ดึงข้อมูลการจองใหม่หลังจากลบเสร็จ
+    db.query("SELECT * FROM timedb_dtp", (err, result) => {
       if (err) {
-        console.error("Error inserting data into MySQL:", err);
-        return res.status(500).json({ error: "Failed to book table" });
+        return res.status(400).send('Not found any timedb_dtp');
       }
-  
-      res.status(200).json({ message: "Table booked successfully!" });
+      res.send({ bookings: result, status: "ok" });
     });
   });
+});
+// });
+app.get('/api/bookings/:id', function (req, res) {
+  const id = req.params.id;
+  db.query("SELECT *FROM timedb_dtp where id=" + id, function (err, result, fields) {
+    if (err) throw err;
+    let bookings = result;
+    if (bookings.length > 0) {
+      res.send(bookings);
+    }
+    else {
+      res.status(400).send('Not found products for' + id);
+    }
+    console.log(result);
+  });
 
+});
 // เริ่มต้นเซิร์ฟเวอร์
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

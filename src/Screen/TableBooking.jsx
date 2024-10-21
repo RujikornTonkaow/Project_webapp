@@ -5,16 +5,18 @@ import Axios from 'axios';
 
 const TableBooking = () => {
     const location = useLocation();
-    const { table ,day ,time , time_end } = location.state || {}; // ดึงข้อมูลโต๊ะที่เลือกจาก state
-    
+    const { table ,day ,time , time_end ,phone,name} = location.state || {}; // ดึงข้อมูลโต๊ะที่เลือกจาก state
+
     const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState(false);
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [form, setForm] = useState({
+        name:userData.user,
         day: day ,
         time: time  ,
         table: table ,
-        time_end: time_end
+        time_end: time_end,
+        phone:userData.tel
     });
 
     const handleChange = (e) => {
@@ -67,19 +69,28 @@ const TableBooking = () => {
             table_no : form.table,
             user: userData.user,
             tel: userData.tel,
-            day: form.day, 
-            time_in: form.time, 
+            day: form.day,
+            time_in: form.time,
             time_out: form.time_end
-     
+
         }).then((response) => {
             alert("Success ");
-            navigate('/detailbooking');
-            
+            navigate('/detailbooking', {
+                state: {
+                    table: form.table,
+                    day: form.day,
+                    time: form.time,
+                    time_end: form.time_end,
+                    name:userData.user,
+                    phone:userData.tel
+                }
+            });
+
         }).catch((error) => {
             console.error("Error registering user:", error);
             alert("Error registering user.");
         });
-        
+
 
 
     }

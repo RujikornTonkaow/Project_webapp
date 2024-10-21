@@ -4,7 +4,12 @@ body {
     background-color: #333;
     /* พื้นหลังสีเทา */
 }
-
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    color: #ff0000;
+    margin-top: 20px;
+}
 .detail-container {
     /* font-family: Arial, sans-serif;
     color: white;
