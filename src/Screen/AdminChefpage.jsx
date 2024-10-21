@@ -49,10 +49,10 @@ function Header() {
     setShowDropdown(!showDropdown);
   };
   const goToAccount = () => {
-    navigate('/account');
+    navigate('/adminaccount');
   };
   const goToBookingHistory = () => {
-    navigate('/detailbooking');
+    navigate('/admindetail');
   };
   // ฟังก์ชันจัดการ Logout
   const handleLogout = () => {
@@ -73,10 +73,10 @@ function Header() {
         <ul className="navLinks-adminchef">
 
           <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
-          <li className="navItem"><a href="#about" onClick={() => handleNavClick('/about')}>About</a></li>
-          <li className="navItem"><a href="#menu" onClick={() => handleNavClick('/menupage')}>Recommended Menu</a></li>
+          <li className="navItem"><a href="#adminabout" onClick={() => handleNavClick('/adminabout')}>About</a></li>
+          <li className="navItem"><a href="#adminmenu" onClick={() => handleNavClick('/adminmenu')}>Recommended Menu</a></li>
           <li className="navItem"><a href="#adminchef" className='active' onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
-          <li className="navItem"><a href="#dmindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
+          <li className="navItem"><a href="#admindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
         </ul>
         {/* <button className="home-tag">{userData.user}</button> */}
         {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}

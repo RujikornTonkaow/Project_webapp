@@ -56,10 +56,10 @@ function AdminDetailBooking() {
         }
     };
     const goToAccount = () => {
-        navigate('/account');
+        navigate('/adminaccount');
     };
     const goToBookingHistory = () => {
-        navigate('/detailbooking');
+        navigate('/admindetail');
     };
 
     // ฟังก์ชันจัดการ Logout
@@ -80,8 +80,8 @@ function AdminDetailBooking() {
                 <div className="logo-admindetail">DPT Restaurant</div>
                 <ul className="navlink-admindetail">
                     <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
-                    <li className="navItem"><a href="#about" onClick={() => handleNavClick('/about')}>About</a></li>
-                    <li className="navItem"><a href="#menu" onClick={() => handleNavClick('/menupage')}>Recommended Menu</a></li>
+                    <li className="navItem"><a href="#adminabout" onClick={() => handleNavClick('/adminabout')}>About</a></li>
+                    <li className="navItem"><a href="#adminmenu" onClick={() => handleNavClick('/adminmenu')}>Recommended Menu</a></li>
                     <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
                     <li className="navItem"><a href="#admindetail" className="active" onClick={() => handleNavClick('/admindetail')}>Table booking</a></li>
                 </ul>

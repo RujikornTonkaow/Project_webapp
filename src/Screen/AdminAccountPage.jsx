@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import './Style/adminhomepage.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import './Style/adminaccountpage.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
-function AdminHomePage() {
-    // const username = "Rujikorn Limtrakul"; // Example username
-    const navigate = useNavigate();
-    const [showDropdown, setShowDropdown] = useState(false);
-    // const location = useLocation();
-    // const { name } = location.state || {};
-    // const { user, tel, role } = location.state || {};
+function AdminAccountPage() {
+    const navigate = useNavigate(); // Initialize the navigate hook
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
-    const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
-    };
+    const [showDropdown, setShowDropdown] = useState(false);
+
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
@@ -22,7 +16,7 @@ function AdminHomePage() {
             navigate('/first');
         }
     }, [navigate]);
-    // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
+
     const toggleDropdown = () => {
         if (userData.user) {
             // ถ้ามีข้อมูลผู้ใช้ให้แสดง dropdown
@@ -46,18 +40,17 @@ function AdminHomePage() {
         // นำทางกลับไปหน้า login
         navigate('/first');
     };
-
+ 
+    const handleNavClick = (path) => {
+        navigate(path); // Navigate to the given path
+    };
     return (
-        <div className="adminhome-header">
-            {/* Navigation Bar */}
-            {/* <div className="headerContent"> */}
-            {/*<div className="logoColumn">
-                    <h1 className="logo">DPT Restaurant</h1>
-                </div> */}
-            <nav className="navbar-adminhome">
-                <div className="logo-adminhome">DPT Restaurant</div>
-                <ul className="navlink-adminhome">
-                    <li className="navItem"><a href="#adminhome" className='active' onClick={() => handleNavClick('/adminhome')}>Home</a></li>
+        <div className='adminaccount-container'>
+            <nav className='navbar-adminaccount'>
+                <div className="logo-adminaccount">DPT Restaurant</div>
+
+                <ul className="navLink-adminaccount">
+                    <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
                     <li className="navItem"><a href="#adminabout" onClick={() => handleNavClick('/adminabout')}>About</a></li>
                     <li className="navItem"><a href="#adminmenu" onClick={() => handleNavClick('/adminmenu')}>Recommended Menu</a></li>
                     <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
@@ -65,13 +58,13 @@ function AdminHomePage() {
                 </ul>
                 {/* <button className="home-tag">{userData.user}</button> */}
                 {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
-                <div className="dropdown-adminhome">
-                    <button className="home-tag" onClick={toggleDropdown}>
+                <div className="dropdown-adminaccount">
+                    <button className="adminaccount-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}
                     </button>
 
                     {showDropdown && (
-                        <div className="dropdown-adminhome-menu">
+                        <div className="dropdown-adminaccount-menu">
                             <ul>
                                 <li onClick={goToAccount}>Account</li>
                                 <li onClick={goToBookingHistory}>Booking History</li>
@@ -81,29 +74,18 @@ function AdminHomePage() {
                     )}
                 </div>
             </nav>
-            {/* <div className="userColumn">
-                    <span className="username">{username}</span>
-                </div> */}
-
-            {/* </div> */}
-            <section
-                className="heroSection-adminhome"
-            >
-                
-                <div className="heroContent-adminhome">
-                    <h2 className="welcomeText-adminhome">Welcome to</h2>
-                    <p className="restaurantName-adminhome">DPT Restaurant</p>
-                    <button className="adminhome-booking-button" onClick={() => handleNavClick('/admindetail')}>
-                        Booking
-                        {/* <span className="srOnly">Access your account</span> */}
-                    </button>
-                    
+            <div className='box-showadmin'>
+                <h2>Account</h2>
+                <div className='form-boxadmin'>
+                    <h3>Name  :  {userData.user} </h3>
                 </div>
-                <div className="overlay"></div>
-                
-            </section>
-        </div>
-    );
-};
+                <div className='form-boxadmin'>
+                    <h3>Phone Number  :  {userData.tel} </h3>
+                </div>
+                <button className='adminabout-button-history' onClick={goToBookingHistory}>Booking History</button>
 
-export default AdminHomePage;
+            </div>
+        </div >
+    )
+};
+export default AdminAccountPage;

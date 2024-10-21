@@ -1,36 +1,32 @@
-import './Style/accountpage.css';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import './Style/adminaboutpage.css';
 import { useNavigate } from 'react-router-dom';
 
-function AccountPage() {
+const AdminAboutPage = () => {
     const navigate = useNavigate(); // Initialize the navigate hook
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [showDropdown, setShowDropdown] = useState(false);
+    const handleNavClick = (path) => {
+        navigate(path); // Navigate to the given path
+    };
+    // State สำหรับควบคุมการแสดงปุ่ม Logout
 
-    useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        if (storedUser) {
-            setUserData(storedUser);
-        } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
-            navigate('/first');
-        }
-    }, [navigate]);
 
+    // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
             // ถ้ามีข้อมูลผู้ใช้ให้แสดง dropdown
             setShowDropdown(!showDropdown);
         } else {
             // ถ้าไม่มีข้อมูลผู้ใช้ให้ไปหน้า login
-            navigate('/login');
+            // navigate('/first');
         }
     };
     const goToAccount = () => {
-        navigate('/account');
+        navigate('/adminaccount');
     };
     const goToBookingHistory = () => {
-        navigate('/detailbooking');
+        navigate('/admindetail');
     };
 
     // ฟังก์ชันจัดการ Logout
@@ -40,31 +36,41 @@ function AccountPage() {
         // นำทางกลับไปหน้า login
         navigate('/first');
     };
- 
-    const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
-    };
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser) {
+            setUserData(storedUser);
+        } else {
+            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
+            // navigate('/login');
+        }
+    }
+        , [navigate]);
     return (
-        <div className='account-container_admin'>
-            <nav className='navbaraccount_admin'>
-                <div className="logo-account_admin">DPT Restaurant</div>
+        <div className="adminabout-container">
 
-                <ul className="navLink-account_admin">
-                    <li className="navItem"><a href="#home" onClick={() => handleNavClick('/home')}>Home</a></li>
-                    <li className="navItem"><a href="#about" onClick={() => handleNavClick('/about')}>About</a></li>
-                    <li className="navItem"><a href="#menu" onClick={() => handleNavClick('/menupage')}>Recommended Menu</a></li>
-                    <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
-                    <li className="navItem"><a href="#settime" onClick={() => handleNavClick('/settime')}>Table Booking</a></li>
+            <nav className="navbar_adminabout">
+                <div className="nav-logo_adminabout">DPT Restaurant</div>
+
+                <ul className="nav-links_adminabout">
+                    <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
+                    <li className="navItem"><a href="#adminabout" className='active' onClick={() => handleNavClick('/adminabout')}>About</a></li>
+                    <li className="navItem"><a href="#adminmenu" onClick={() => handleNavClick('/adminmenu')}>Recommended Menu</a></li>
+                    <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
+                    <li className="navItem"><a href="#admindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
                 </ul>
+                {/* <div className="chef-tag">
+                    <span>Ruijkorn Imtrakun</span>
+                </div> */}
                 {/* <button className="home-tag">{userData.user}</button> */}
                 {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
-                <div className="dropdown-account_admin">
-                    <button className="account-tag_admin" onClick={toggleDropdown}>
+                <div className="dropdown-adminabout">
+                    <button className="adminabout-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}
                     </button>
 
                     {showDropdown && (
-                        <div className="dropdownaccount-menu_admin">
+                        <div className="dropdown-adminabout-menu">
                             <ul>
                                 <li onClick={goToAccount}>Account</li>
                                 <li onClick={goToBookingHistory}>Booking History</li>
@@ -74,18 +80,17 @@ function AccountPage() {
                     )}
                 </div>
             </nav>
-            <div className='box-show'>
-                <h2>Account</h2>
-                <div className='form-box'>
-                    <h3>Name  :  {userData.user} </h3>
-                </div>
-                <div className='form-box'>
-                    <h3>Phone Number  :  {userData.tel} </h3>
-                </div>
-                <button className='button-history' onClick={goToBookingHistory}>Booking History</button>
 
+            <div className="dpt-adminabout-content">
+                <h1>DPT Restaurant</h1>
+                <p>
+                    ร้าน <span className="highlight-adminabout">DPT Restaurant</span> สุดหรูสไตล์ฝรั่งเศสที่พร้อมมอบประสบการณ์
+                    การรับประทานอาหารสุดพิเศษให้กับคุณลูกค้าของเรา จากฝีมือการปรุงอาหารของเชฟมืออาชีพที่มีประสบการณ์เป็นเชฟมาอย่างยาวนาน
+                    และมีชื่อเสียง พร้อมกับบรรยากาศร้านสุดพิเศษที่ท่านจะประทับใจ และ ไม่มีวันลืม
+                </p>
             </div>
-        </div >
-    )
+        </div>
+    );
 };
-export default AccountPage;
+
+export default AdminAboutPage;
