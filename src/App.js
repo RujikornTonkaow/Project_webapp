@@ -14,6 +14,9 @@ import TableBooking from './Screen/TableBooking';
 import SetTime from './Screen/SetTime';
 import DetailBooking from './Screen/DetailBooking';
 import Account from './Screen/AccountPage';
+import AboutAdmin from './Screen/AboutAdmin';
+import MenuAdmin from './Screen/MenuAdmin';
+import ChefAdmin from './Screen/ChefAdmin';
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +35,9 @@ function App() {
         <Route path="first" element={<FirstPage/>}/>
         <Route path="account" element={<Account/>}/>
         <Route path="detailbooking" element={<DetailBooking/>}/>
+        <Route path="aboutad" element={<AboutAdmin/>}/>
+        <Route path="menuad" element={<MenuAdmin/>}/>
+        <Route path="chefad" element={<ChefAdmin/>}/>
 
       </Routes>
     </BrowserRouter>
