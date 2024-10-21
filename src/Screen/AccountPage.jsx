@@ -77,12 +77,10 @@ function AccountPage() {
             <div className='box-show'>
                 <h2>Account</h2>
                 <div className='form-box'>
-                    <label>Name</label>
-                    <label>{userData.user}</label>
+                    <h3>Name  :  {userData.user} </h3>
                 </div>
                 <div className='form-box'>
-                    <label>Phone Number</label>
-                    <label>{userData.tel}</label>
+                    <h3>Phone Number  :  {userData.tel} </h3>
                 </div>
                 <button className='button-history' onClick={goToBookingHistory}>Booking History</button>
 
