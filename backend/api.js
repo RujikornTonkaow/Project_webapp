@@ -42,6 +42,16 @@ app.get('/api/user', function (req, res) {
   });
 })
 
+app.get('/api/time', function (req, res) {
+  db.query("SELECT * FROM timedb_dtp", function (err, result, fields) {
+    if (err) {
+      return res.status(400).send('Not found');
+    }
+    console.log(result);
+    res.send(result);
+  });
+})
+
 app.get("/names", (req, res) => {
   const query = "SELECT user FROM userdb_dtp";
   db.query(query, (err, results) => {
