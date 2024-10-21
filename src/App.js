@@ -15,12 +15,13 @@ import SetTime from './Screen/SetTime';
 import DetailBooking from './Screen/DetailBooking';
 import Account from './Screen/AccountPage';
 import AdminDetail from './Screen/AdminDetailBooking';
+import AdminHome from './Screen/AdminHomePage.jsx';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route index element={<AdminDetail/>}/>
+        <Route index element={<FirstPage/>}/>
         <Route path="login" element={<Login/>} />
         <Route path="register" element={<Register/>}/>
         <Route path="home" element={<Home/>}/>
@@ -34,6 +35,7 @@ function App() {
         <Route path="account" element={<Account/>}/>
         <Route path="detailbooking" element={<DetailBooking/>}/>
         <Route path="admindetail" element={<AdminDetail/>}/>
+        <Route path="adminhome" element={<AdminHome/>}/>
 
       </Routes>
     </BrowserRouter>

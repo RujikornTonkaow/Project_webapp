@@ -79,11 +79,11 @@ function AdminDetailBooking() {
             <nav className="admindetail-nav">
                 <div className="logo-admindetail">DPT Restaurant</div>
                 <ul className="navlink-admindetail">
-                    <li className="navItem"><a href="#home" onClick={() => handleNavClick('/home')}>Home</a></li>
+                    <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
                     <li className="navItem"><a href="#about" onClick={() => handleNavClick('/about')}>About</a></li>
                     <li className="navItem"><a href="#menu" onClick={() => handleNavClick('/menupage')}>Recommended Menu</a></li>
                     <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
-                    <li className="navItem"><a href="#settime" className="active" onClick={() => handleNavClick('/settime')}>Table booking</a></li>
+                    <li className="navItem"><a href="#admindetail" className="active" onClick={() => handleNavClick('/admindetail')}>Table booking</a></li>
                 </ul>
                 {/* <button className="home-tag">{userData.user}</button> */}
                 {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
