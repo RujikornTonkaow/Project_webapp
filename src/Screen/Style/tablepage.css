@@ -210,3 +210,8 @@ body {
 .dropdowntable-menu li:hover {
   background-color: #555;
 }
+
+.tableButton.booked {
+  background-color: gray;
+  cursor: not-allowed;
+}

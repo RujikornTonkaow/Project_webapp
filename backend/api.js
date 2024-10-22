@@ -88,6 +88,20 @@ app.get('/time', function (req, res) {
   });
 })
 
+app.get('/tableforbooking', function (req, res) {
+  db.query("SELECT table_no, day, time_in, time_out FROM timedb_dtp", function (err, result) {
+    if (err) {
+      return res.status(400).send('Not found');
+    }
+    res.send(result); // Send the query results to the frontend
+  });
+});
+
+
+
+
+
+
 app.post("/register", (req, res) => {
   const { user, password, tel, role } = req.body;
 
