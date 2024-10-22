@@ -14,12 +14,19 @@ import TableBooking from './Screen/TableBooking';
 import SetTime from './Screen/SetTime';
 import DetailBooking from './Screen/DetailBooking';
 import Account from './Screen/AccountPage';
+import AdminDetail from './Screen/AdminDetailBooking';
+import AdminHome from './Screen/AdminHomePage.jsx';
+import AdminChef from './Screen/AdminChefpage.jsx';
+import AdminAbout from './Screen/Adminaboutpage.jsx';
+import AdminMenu from './Screen/AdminMenupage.jsx';
+import AdminAccount from './Screen/AdminAccountPage.jsx';
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route index element={<Home/>}/>
+        <Route index element={<Login/>}/>
         <Route path="login" element={<Login/>} />
         <Route path="register" element={<Register/>}/>
         <Route path="home" element={<Home/>}/>
@@ -32,6 +39,13 @@ function App() {
         <Route path="first" element={<FirstPage/>}/>
         <Route path="account" element={<Account/>}/>
         <Route path="detailbooking" element={<DetailBooking/>}/>
+        <Route path="admindetail" element={<AdminDetail/>}/>
+        <Route path="adminhome" element={<AdminHome/>}/>
+        <Route path="adminchef" element={<AdminChef/>}/>
+        <Route path="adminabout" element={<AdminAbout/>}/>
+        <Route path="adminmenu" element={<AdminMenu/>}/>
+        <Route path="adminaccount" element={<AdminAccount/>}/>
+
 
       </Routes>
     </BrowserRouter>

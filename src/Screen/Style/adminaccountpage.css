@@ -5,7 +5,7 @@ body {
     background-color: #2d2d2d;
 }
 
-.account-container {
+.adminaccount-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@ body {
 }
 
 /* Navbar Styles */
-.navbaraccount {
+.navbar-adminaccount {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,31 +30,31 @@ body {
     /* z-index: 1000; */
 }
 
-.logo-account {
+.logo-adminaccount {
     font-size: 1.8rem;
     color: #ffffff;
     font-weight: bold;
 }
 
-.navLink-account {
+.navLink-adminaccount {
     list-style: none;
     display: flex;
     gap: 20px;
     margin: 0 auto;
 }
 
-.navLink-account li {
+.navLink-adminaccount li {
     display: inline-block;
 }
 
-.navLinks-account li a {
+.navLinks-adminaccount li a {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
 }
 
-.navLink-account li a:hover,
-.navLink-account li a:active {
+.navLink-adminaccount li a:hover,
+.navLink-adminaccount li a:active {
     color: #ffcc00;
 }
 
@@ -80,7 +80,7 @@ body {
      เปลี่ยนสีเมื่อ hover หรือ active */
 
 
-.account-tag {
+.adminaccount-tag {
     background-color: #ffa500;
     color: white;
     border: none;
@@ -90,12 +90,12 @@ body {
     font-size: 14px;
 }
 
-.account-tag:hover {
+.adminaccount-tag:hover {
     background-color: #D0671B;
 }
 
 
-.box-show {
+.box-showadmin {
     background-color: rgb(63, 63, 63);
     /* border: 2px solid red; */
     padding: 30px;
@@ -116,13 +116,13 @@ h3{
     text-align: start;
     padding-left: 15px;
 }
-.form-box {
+.form-boxadmin {
     /* background-color: red; */
     margin-top: 10px;
     font-size: 1.2em;
 }
 
-.button-history {
+.adminabout-button-history {
     background-color: #ff7b1c;
     color: white;
     padding: 10px 20px;
@@ -135,18 +135,18 @@ h3{
 
     margin-top: 40px;
 }
-.button-history:hover{
+.adminabout-button-history:hover{
     
     background-color: #D0671B;
 
 } 
 
-.dropdown-account {
+.dropdown-adminaccount {
     position: relative;
     display: inline-block;
 }
 
-.dropdownaccount-menu {
+.dropdown-adminaccount-menu {
     position: absolute;
     top: 100%;
     right: 0;
@@ -158,18 +158,18 @@ h3{
     width: 200px;
 }
 
-.dropdownaccount-menu ul {
+.dropdown-adminccount-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.dropdownaccount-menu li {
+.dropdown-adminaccount-menu li {
     padding: 10px;
     cursor: pointer;
     color: #fff;
 }
 
-.dropdownaccount-menu li:hover {
+.dropdown-adminaccount-menu li:hover {
     background-color: #555;
 }

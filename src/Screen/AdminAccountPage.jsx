@@ -1,8 +1,8 @@
-import './Style/accountpage.css';
+import './Style/adminaccountpage.css';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-function AccountPage() {
+function AdminAccountPage() {
     const navigate = useNavigate(); // Initialize the navigate hook
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [showDropdown, setShowDropdown] = useState(false);
@@ -27,10 +27,10 @@ function AccountPage() {
         }
     };
     const goToAccount = () => {
-        navigate('/account');
+        navigate('/adminaccount');
     };
     const goToBookingHistory = () => {
-        navigate('/detailbooking');
+        navigate('/admindetail');
     };
 
     // ฟังก์ชันจัดการ Logout
@@ -45,26 +45,26 @@ function AccountPage() {
         navigate(path); // Navigate to the given path
     };
     return (
-        <div className='account-container'>
-            <nav className='navbaraccount'>
-                <div className="logo-account">DPT Restaurant</div>
+        <div className='adminaccount-container'>
+            <nav className='navbar-adminaccount'>
+                <div className="logo-adminaccount">DPT Restaurant</div>
 
-                <ul className="navLink-account">
-                    <li className="navItem"><a href="#home" onClick={() => handleNavClick('/home')}>Home</a></li>
-                    <li className="navItem"><a href="#about" onClick={() => handleNavClick('/about')}>About</a></li>
-                    <li className="navItem"><a href="#menu" onClick={() => handleNavClick('/menupage')}>Recommended Menu</a></li>
-                    <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
-                    <li className="navItem"><a href="#settime" onClick={() => handleNavClick('/settime')}>Table Booking</a></li>
+                <ul className="navLink-adminaccount">
+                    <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
+                    <li className="navItem"><a href="#adminabout" onClick={() => handleNavClick('/adminabout')}>About</a></li>
+                    <li className="navItem"><a href="#adminmenu" onClick={() => handleNavClick('/adminmenu')}>Recommended Menu</a></li>
+                    <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
+                    <li className="navItem"><a href="#admindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
                 </ul>
                 {/* <button className="home-tag">{userData.user}</button> */}
                 {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
-                <div className="dropdown-account">
-                    <button className="account-tag" onClick={toggleDropdown}>
+                <div className="dropdown-adminaccount">
+                    <button className="adminaccount-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}
                     </button>
 
                     {showDropdown && (
-                        <div className="dropdownaccount-menu">
+                        <div className="dropdown-adminaccount-menu">
                             <ul>
                                 <li onClick={goToAccount}>Account</li>
                                 <li onClick={goToBookingHistory}>Booking History</li>
@@ -74,18 +74,18 @@ function AccountPage() {
                     )}
                 </div>
             </nav>
-            <div className='box-show'>
+            <div className='box-showadmin'>
                 <h2>Account</h2>
-                <div className='form-box'>
+                <div className='form-boxadmin'>
                     <h3>Name  :  {userData.user} </h3>
                 </div>
-                <div className='form-box'>
+                <div className='form-boxadmin'>
                     <h3>Phone Number  :  {userData.tel} </h3>
                 </div>
-                <button className='button-history' onClick={goToBookingHistory}>Booking History</button>
+                <button className='adminabout-button-history' onClick={goToBookingHistory}>Booking History</button>
 
             </div>
         </div >
     )
 };
-export default AccountPage;
+export default AdminAccountPage;
