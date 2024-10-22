@@ -53,10 +53,12 @@ function TablePage() {
     const fetchBookedTables = async () => {
       // ดึงข้อมูลการจองของวันและช่วงเวลาที่กำหนด
       // ตัวอย่างการดึงข้อมูลการจอง
-      const bookings = [
-        { table: 'A-01', day: '2024-10-22', time: '18:00', time_end: '20:00' },
-        { table: 'B-02', day: '2024-10-22', time: '19:00', time_end: '21:00' },
-      ];
+      const response = await axios.get('http://localhost:5000/time');
+      const bookings = response.data;
+      // const bookings = [
+      //   { table: 'A-01', day: '2024-10-22', time: '18:00', time_end: '20:00' },
+      //   { table: 'B-02', day: '2024-10-22', time: '19:00', time_end: '21:00' },
+      // ];
 
       const filteredBookings = bookings.filter(
         (booking) =>
