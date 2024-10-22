@@ -170,6 +170,7 @@ const TableBooking = () => {
                             name="day"
                             value={form.day}
                             onChange={handleChange}
+                            disabled
                         />
                     </div>
                     <div className="form-group">
@@ -179,6 +180,7 @@ const TableBooking = () => {
                             name="time"
                             value={form.time}
                             onChange={handleChange}
+                            disabled
                         />
                     </div>
                     <div className="form-group">

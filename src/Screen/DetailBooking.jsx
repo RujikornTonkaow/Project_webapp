@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Style/detailbooking.css';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-
+import Swal from 'sweetalert2'
 function DetailBooking() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
@@ -33,7 +33,7 @@ function DetailBooking() {
                     console.log("Error fetching booking data:", error);
                 }
             });
-    }, [navigate,userData.user]);
+    }, [navigate, userData.user]);
     // useEffect(() => {
     //     if (userData.user) { // ตรวจสอบว่ามีค่า userData.user ก่อนที่จะเรียก API
     //         Axios.get(`http://localhost:5000/api/bookings/${userData.user}`) // ใช้ template literal
@@ -49,16 +49,38 @@ function DetailBooking() {
     //             });
     //     }
     // }, [userData.user]);
-    const handleCancelBooking = (id) => {
-        Axios.delete(`http://localhost:5000/api/delbookings/${id}`)
-            .then(response => {
-                if (response.data.status === "ok") alert("Delete Booking sucessfully!");
-                setBookings(response.data.bookings);
-                window.location.reload();
-            })
-            .catch(error => {
-                console.log("error");
-            });
+    const handleCancelBooking = (id,table_no) => {
+        Swal.fire({
+            title: `คุณต้องการที่จะลบการจองโต๊ะใช่ไหม ?
+            Table : ${table_no} `,
+            // showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            // denyButtonText: 'No',
+            customClass: {
+                actions: 'my-actions',
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+            //     denyButton: 'order-3',
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ถ้าผู้ใช้กด Yes ให้ทำการลบข้อมูล
+                Axios.delete(`http://localhost:5000/api/delbookings/${id}`)
+                    .then(response => {
+                        if (response.data.status === "ok") {
+                            setBookings(response.data.bookings);
+                            Swal.fire('Deleted!', 'Your booking has been deleted.', 'success');
+                        }
+                    })
+                    .catch(error => {
+                        console.log("Error deleting booking:", error);
+                    });
+            } else if (result.isDenied) {
+                // ถ้าผู้ใช้กด No หรือ Cancel ให้ทำการนำทางกลับ
+                Swal.fire('Changes are not saved', '', 'info');
+            }
+        });
     }
     // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
@@ -143,7 +165,7 @@ function DetailBooking() {
                                 <td>
                                     <button
                                         className="cancel-button"
-                                        onClick={() => handleCancelBooking(booking.id)}
+                                        onClick={() => handleCancelBooking(booking.id,booking.table_no)}
                                     >Cancel
                                     </button>
                                 </td>
@@ -156,7 +178,7 @@ function DetailBooking() {
             )}
             <button className="home-button" onClick={() => handleNavClick('/home')}>Home</button>
 
-            
+
         </div>
     );
 }
