@@ -29,7 +29,15 @@ db.connect((err) => {
     console.log("Connected to MySQL database");
   }
 });
-
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  next();
+});
 
 
 app.get('/api/user', function (req, res) {
@@ -135,7 +143,7 @@ app.post("/register", (req, res) => {
         console.error("Error inserting data into MySQL:", err);
         return res.status(500).json({ error: "Failed to register user" });
       }
-
+      console.log("Hashed Password:", hashedPassword);
       res.status(200).json({ message: "User registered successfully!" });
     });
   });
@@ -144,43 +152,53 @@ app.post("/register", (req, res) => {
 
 app.post('/login', (req, res) => {
   const { user, password } = req.body;
-
-  // ดึงข้อมูลผู้ใช้จากฐานข้อมูล
+  console.log('Username:', user, 'Password:', password);
+  
+  if (!user || !password) {
+    return res.status(400).json({ error: 'Please provide both username and password' });
+  }
+  
   const query = 'SELECT * FROM userdb_dtp WHERE BINARY user = ?';
   db.query(query, [user], (err, results) => {
+  if (err) {
+    console.error('Error querying database:', err);
+    return res.status(500).json({ error: 'Database query failed' });
+  }
+
+  if (results.length === 0) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  const userData = results[0];
+  const storedHashedPassword = userData.password;
+  console.log('Stored hashed password from DB:', storedHashedPassword);
+  // Debugging
+  console.log('Input password:', password); // Log input password
+
+  // เปรียบเทียบรหัสผ่าน
+  bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
+    console.log('Stored hashed password:', storedHashedPassword); // Log hashed password from DB
     if (err) {
-      console.error('Error querying database:', err);
-      return res.status(500).json({ error: 'Database query failed' });
+      console.error('Error comparing passwords:', err);
+      return res.status(500).json({ error: 'Internal server error' });
     }
-
-    if (results.length === 0) {
-      return res.status(404).json({ error: 'User not found' });
+    
+    console.log('Password match:', isMatch); // Log result of comparison
+    if (isMatch) {
+      return res.status(200).json({
+        message: 'Login successful',
+        user: userData.user,
+        role: userData.role,
+        tel: userData.tel
+      });
+    } else {
+      return res.status(401).json({ error: 'Incorrect password' });
     }
-
-    // const userData = results[0];
-    const user = results[0].user;
-    const tel = results[0].tel;
-    const storedHashedPassword = results[0].password;
-    // เปรียบเทียบรหัสผ่านกับ hash ที่เก็บไว้
-    bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
-      if (err) {
-        console.error('Error comparing passwords:', err);
-        return res.status(500).json({ error: 'Internal server error' });
-      }
-
-      if (!isMatch) {
-        res.status(200).json({
-          message: 'Login successful',
-          user: user,
-          role: results[0].role,
-          tel: tel
-        });
-      } else
-        // ถ้ารหัสผ่านถูกต้อง ให้ส่งข้อมูล role กลับไป
-        res.status(401).json({ message: 'Unauthorized' });
-    });
   });
 });
+});
+
+
 
 app.post("/tablebooking", (req, res) => {
   const { table_no, user, tel, day, time_in, time_out } = req.body;
@@ -207,11 +225,11 @@ app.get('/api/bookings/:user', (req, res) => {
       console.error("Error fetching booking data:", err);
       return res.status(500).json({ error: "Failed to fetch booking data" });
     }
-    
+
     if (results.length === 0) {
       return res.status(404).json({ message: "No bookings found" }); // ส่งสถานะ 404 ถ้าไม่มีข้อมูล
     }
-    
+
     res.status(200).json(results);
   });
 });

@@ -50,28 +50,52 @@ function LoginPage() {
     //         console.error('Error fetching user data:', error);
     //     });
     // }
+    // const handleLogin = () => {
+    //     console.log("Sending username:", name);
+    //     console.log("Sending password:", password);
+    //     Axios.post('http://localhost:5000/login', {
+    //         user: name,
+    //         password: password,
+    //     }).then((response) => {
+    //         const { user,role, tel } = response.data;
+    //         localStorage.setItem('user', JSON.stringify({ user, tel, role }));
+    //         console.log("Response from server:", response.data);
+    //         if (role === 'customer') {
+    //             navigate('/home'
+    //             );
+    //         } else if (role === 'admin') {
+    //             navigate('/adminhome');
+    //         }
+    //     }).catch((error) => {
+    //         console.error('Error during login:', error);
+    //         alert("Login failed, please check your credentials.");
+    //         setErrorMessage('Login failed, please check your credentials.');  // แสดงข้อความ error
+    //     });
+    // }
     const handleLogin = () => {
-        console.log("Sending username:", name);
-        console.log("Sending password:", password);
+        if (!name || !password) {
+            setErrorMessage('Please enter both username and password.');
+            return;
+        }
+        
         Axios.post('http://localhost:5000/login', {
             user: name,
-            password: password,
+            password: password
         }).then((response) => {
-            const { user,role, tel } = response.data;
+            console.log("user : ",name,"password : ",password);
+            const { user, role, tel } = response.data;
             localStorage.setItem('user', JSON.stringify({ user, tel, role }));
-            console.log("Response from server:", response.data);
+
             if (role === 'customer') {
-                navigate('/home'
-                );
+                navigate('/home');
             } else if (role === 'admin') {
                 navigate('/adminhome');
             }
         }).catch((error) => {
             console.error('Error during login:', error);
-            alert("Login failed, please check your credentials.");
-            setErrorMessage('Login failed, please check your credentials.');  // แสดงข้อความ error
+            setErrorMessage('Invalid username or password.');
         });
-    }
+    };
 
     const handleRegister = () => {
         console.log('Registering', name, password);
