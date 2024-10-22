@@ -1,8 +1,8 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import './Style/registerpage.css';
 import { useNavigate } from 'react-router-dom';
 import Axios from "axios";
-
+import Swal from 'sweetalert2'
 
 
 
@@ -13,9 +13,9 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    
+
     const [user, setNames] = useState([]);
-    const [phones, setPhones] = useState([]); 
+    const [phones, setPhones] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -26,7 +26,7 @@ const Register = () => {
             try {
                 const response = await Axios.get('http://localhost:5000/names');
                 // ดึงข้อมูลชื่อจาก results และสร้าง array ของชื่อ
-                const userNames = response.data.map(item => item.user); 
+                const userNames = response.data.map(item => item.user);
                 setNames(userNames);
                 setLoading(false);
 
@@ -52,7 +52,7 @@ const Register = () => {
 
         fetchNames();
         fetchPhones();
-    }, []);  
+    }, []);
 
     // // แสดงข้อความขณะโหลด
     if (loading) return <p>Loading...</p>;
@@ -66,16 +66,6 @@ const Register = () => {
         e.preventDefault();
         console.log(user);
         console.log(phones);
-        
-        // if (user.includes(name) && phones.includes(phoneNumber)) {
-        //     alert("ได้ลงทะเบียนไปแล้วด้วยชื่อและเบอร์นี้");
-        //     // เคลียร์ฟิลด์การกรอกข้อมูล
-        //     setName("");
-        //     setPhoneNumber("");
-        //     setPassword("");
-        //     setConfirmPassword("");
-        //     return;
-        // }
         const phoneRegex = /^\d+$/;
         if (!name || !password || !confirmPassword || !phoneNumber || password !== confirmPassword) {
             if (!name || !password || !confirmPassword || !phoneNumber) {
@@ -89,17 +79,27 @@ const Register = () => {
             alert("ได้ลงทะเบียนไปแล้วด้วยชื่อนี้");
         } else if (phones.includes(phoneNumber)) { // เช็คว่าหมายเลขโทรศัพท์ซ้ำหรือไม่
             alert("ได้ลงทะเบียนไปแล้วด้วยเบอร์นี้");
-        } else { 
+        } else {
 
             Axios.post('http://localhost:5000/register', {
                 user: name,
                 password: password,
                 tel: phoneNumber,
-                role: "customer",  
+                role: "customer",
             }).then((response) => {
-                
-                alert(`Welcome, ${name}!`);
-                
+
+                const doubleCheckIcon =
+                    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="32"><path d="M342.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 178.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l80 80c12.5 12.5 32.8 12.5 45.3 0l160-160zm96 128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 402.7 54.6 297.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256z" fill="currentColor" /></svg>'
+
+                Swal.fire({
+                    title: 'Register Success',
+                    icon: 'success',
+                    iconHtml: doubleCheckIcon,
+                    customClass: {
+                        icon: 'rotate-y',
+                    }
+                });
+
                 // Navigate ไปหน้า Login พร้อมกับส่งข้อมูลชื่อผู้ใช้ไปด้วย
                 navigate('/login', { state: { name, password, phoneNumber } });
             }).catch((error) => {
@@ -108,6 +108,19 @@ const Register = () => {
             });
         }
     };
+    // const bttRegis = () => {
+    //     const doubleCheckIcon =
+    //         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="32"><path d="M342.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 178.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l80 80c12.5 12.5 32.8 12.5 45.3 0l160-160zm96 128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 402.7 54.6 297.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256z" fill="currentColor" /></svg>'
+
+    //     Swal.fire({
+    //         title: 'My Icon is Special!',
+    //         icon: 'success',
+    //         iconHtml: doubleCheckIcon,
+    //         customClass: {
+    //             icon: 'rotate-y',
+    //         }
+    //     });
+    // };
 
     const handleNavClick = (path) => {
         navigate(path); // Navigate to the given path

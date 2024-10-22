@@ -157,3 +157,12 @@ body {
 .registerButton:hover {
     background-color: #d35400;
 }
+.rotate-y {
+    animation: rotateY 1s infinite linear;
+}
+
+@keyframes rotateY {
+    to {
+        transform: rotateY(360deg);
+    }
+}
