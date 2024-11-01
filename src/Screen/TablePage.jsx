@@ -71,7 +71,7 @@ function TablePage() {
         (booking) =>
           booking.day === day &&
           ((time >= booking.time && time <= booking.time_end) ||
-            (time_end >= booking.time_ && time_end <= booking.time_end))
+            (time_end >= booking.time && time_end <= booking.time_end))
       );
       setBookedTables(filteredBookings.map((b) => b.table));
     };
