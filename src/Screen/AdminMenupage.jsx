@@ -11,6 +11,13 @@ function AdminMenupage() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUserData(storedUser);
+    } else {
+      // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
+      // navigate('/first');
+    }
     axios.get('http://localhost:5000/configmenu')
       .then(response => {
 
@@ -72,10 +79,10 @@ function AdminMenupage() {
   const handleedit = (index) => {
     const item = menu[index];
     Swal.fire({
-      title: "แก้ไขราคาของ "+item.name,
-      input: 'number' ,
-      inputLabel: item.name + " "+item.price,
-      inputValue: item.price ,
+      title: "แก้ไขราคาของ " + item.name,
+      input: 'number',
+      inputLabel: item.name + " " + item.price,
+      inputValue: item.price,
       showCancelButton: true,
       confirmButtonText: 'Save',
       preConfirm: (newPrice) => {
@@ -89,9 +96,9 @@ function AdminMenupage() {
         const newPrice = `${result.value} THB`;
         axios.put(`http://localhost:5000/updateMenuPrice/${item.id}`, { price: newPrice })
           .then(response => {
-            setMenu(prevMenu => 
+            setMenu(prevMenu =>
               prevMenu.map((menuItem, i) =>
-                i === index ? { ...menuItem, price: newPrice} : menuItem
+                i === index ? { ...menuItem, price: newPrice } : menuItem
               )
             );
             Swal.fire('Saved!', 'Price has been updated.', 'success');

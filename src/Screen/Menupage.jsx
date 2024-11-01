@@ -11,6 +11,13 @@ function Menupage() {
 
   // Fetch menu data from API when component mounts
   useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUserData(storedUser);
+    } else {
+      // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
+      // navigate('/first');
+    }
     axios.get('http://localhost:5000/configmenu')
       .then(response => {
         setMenu(response.data);
@@ -57,7 +64,7 @@ function Menupage() {
           <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
           <li className="navItem"><a href="#settime" onClick={() => handleNavClick('/settime')}>Table Booking</a></li>
         </ul>
-        
+
         <div className="dropdown-menu">
           <button className="menu-tag" onClick={toggleDropdown}>
             {userData.user || "LOGIN"}

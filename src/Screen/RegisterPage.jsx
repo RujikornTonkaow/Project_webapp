@@ -66,7 +66,7 @@ const Register = () => {
         e.preventDefault();
         console.log(user);
         console.log(phones);
-        const phoneRegex = /^\d+$/;
+        const phoneRegex = /^\d{0,10}$/;
         if (!name || !password || !confirmPassword || !phoneNumber || password !== confirmPassword) {
             if (!name || !password || !confirmPassword || !phoneNumber) {
                 alert("Please fill out all fields.");
@@ -75,11 +75,16 @@ const Register = () => {
             } else if (!phoneRegex.test(phoneNumber)) {
                 alert("Phone number should contain only numbers.");
             }
+
         } else if (user.includes(name)) { // เช็คว่าชื่อผู้ใช้ซ้ำหรือไม่
             alert("ได้ลงทะเบียนไปแล้วด้วยชื่อนี้");
         } else if (phones.includes(phoneNumber)) { // เช็คว่าหมายเลขโทรศัพท์ซ้ำหรือไม่
             alert("ได้ลงทะเบียนไปแล้วด้วยเบอร์นี้");
-        } else {
+        }else if (phoneNumber.length !== 10 || !phoneNumber.startsWith("0")) { // ตรวจสอบความยาวเบอร์โทรศัพท์
+            alert("Phone number must be exactly 10 digits, and start with 0.");
+        }
+
+        else {
 
             Axios.post('http://localhost:5000/register', {
                 user: name,
@@ -168,8 +173,13 @@ const Register = () => {
                         type="number"
                         placeholder="Enter phone number"
                         value={phoneNumber}
-                        pattern="[0-9]{10}"
-                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            if ( value.length <= 10) {
+                                setPhoneNumber(value);
+                            }
+                        }}
                         required
                     />
                     <button type="submit" >Register</button>
