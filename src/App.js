@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route index element={<Login/>}/>
+        <Route index element={<AdminMenu/>}/>
         <Route path="login" element={<Login/>} />
         <Route path="register" element={<Register/>}/>
         <Route path="home" element={<Home/>}/>

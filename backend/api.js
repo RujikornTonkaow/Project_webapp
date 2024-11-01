@@ -153,49 +153,49 @@ app.post("/register", (req, res) => {
 app.post('/login', (req, res) => {
   const { user, password } = req.body;
   console.log('Username:', user, 'Password:', password);
-  
+
   if (!user || !password) {
     return res.status(400).json({ error: 'Please provide both username and password' });
   }
-  
+
   const query = 'SELECT * FROM userdb_dtp WHERE BINARY user = ?';
   db.query(query, [user], (err, results) => {
-  if (err) {
-    console.error('Error querying database:', err);
-    return res.status(500).json({ error: 'Database query failed' });
-  }
-
-  if (results.length === 0) {
-    return res.status(404).json({ error: 'User not found' });
-  }
-
-  const userData = results[0];
-  const storedHashedPassword = userData.password;
-  console.log('Stored hashed password from DB:', storedHashedPassword);
-  // Debugging
-  console.log('Input password:', password); // Log input password
-
-  // เปรียบเทียบรหัสผ่าน
-  bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
-    console.log('Stored hashed password:', storedHashedPassword); // Log hashed password from DB
     if (err) {
-      console.error('Error comparing passwords:', err);
-      return res.status(500).json({ error: 'Internal server error' });
+      console.error('Error querying database:', err);
+      return res.status(500).json({ error: 'Database query failed' });
     }
-    
-    console.log('Password match:', isMatch); // Log result of comparison
-    if (isMatch) {
-      return res.status(200).json({
-        message: 'Login successful',
-        user: userData.user,
-        role: userData.role,
-        tel: userData.tel
-      });
-    } else {
-      return res.status(401).json({ error: 'Incorrect password' });
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
     }
+
+    const userData = results[0];
+    const storedHashedPassword = userData.password;
+    console.log('Stored hashed password from DB:', storedHashedPassword);
+    // Debugging
+    console.log('Input password:', password); // Log input password
+
+    // เปรียบเทียบรหัสผ่าน
+    bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
+      console.log('Stored hashed password:', storedHashedPassword); // Log hashed password from DB
+      if (err) {
+        console.error('Error comparing passwords:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+
+      console.log('Password match:', isMatch); // Log result of comparison
+      if (isMatch) {
+        return res.status(200).json({
+          message: 'Login successful',
+          user: userData.user,
+          role: userData.role,
+          tel: userData.tel
+        });
+      } else {
+        return res.status(401).json({ error: 'Incorrect password' });
+      }
+    });
   });
-});
 });
 
 
@@ -269,6 +269,35 @@ app.get('/api/bookings/:id', function (req, res) {
     console.log(result);
   });
 
+});
+
+app.get('/configmenu', function (req, res) {
+  db.query("SELECT * FROM menudb_dtp", function (err, result) {
+    if (err) {
+      return res.status(400).send('Not found');
+    }
+    res.status(200).json(result); // Send the query results to the frontend
+  });
+});
+
+app.put('/updateMenuStatus/:id', async (req, res) => {
+
+  const { id } = req.params;
+  const { status } = req.body;
+  console.log(`Updating menu with ID: ${id}, New status: ${status}`);
+  try {
+    db.query("UPDATE menudb_dtp SET status=? WHERE id=? ", [status, id], (err, result) => {
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Menu not found' });
+      }
+      res.json({ message: 'Menu status updated successfully', id: id, status: status });
+
+    })
+
+  } catch (error) {
+    console.error('Error updating menu:', error);
+    res.status(500).json({ message: error.message });
+  }
 });
 // เริ่มต้นเซิร์ฟเวอร์
 app.listen(port, () => {

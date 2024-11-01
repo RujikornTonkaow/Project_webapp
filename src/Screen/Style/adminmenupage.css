@@ -1,207 +1,229 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-    /* พื้นหลังสีเทา */
-  }
-  
-  .adminmenu-container {
-    font-family: Arial, sans-serif;
-    color: white;
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  
-  }
-  
-  
-  /* .menu-header {
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  /* พื้นหลังสีเทา */
+}
+
+.adminmenu-container {
+  font-family: Arial, sans-serif;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+}
+
+
+/* .menu-header {
     display: flex; /* ใช้ Flexbox เพื่อจัดวางในแนวนอน */
-  /* justify-content: space-between; /* กระจายเนื้อหาตามความกว้าง */
-  /* align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-  /*  position: fixed;
+/* justify-content: space-between; /* กระจายเนื้อหาตามความกว้าง */
+/* align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+/*  position: fixed;
     top: 0; ชิดขอบบน */
-  /* right: 0;
+/* right: 0;
     background-color: #000;
     width: 100%;
     padding: 10px 20px; /* เพิ่ม padding เพื่อให้สวยงาม */
-  /*  z-index: 1000;
+/*  z-index: 1000;
   } */
-  
-  /* .menu-header h1 {
+
+/* .menu-header h1 {
     margin: 0;
     font-size: 48px;
   } */
-  
-  .adminmenu-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  .logo-adminmenu{
-    font-size: 1.8rem;
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  .navlink-adminmenu{
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0 auto;
-  }
-  
-  .navlink-adminmenu li{
-    display: inline-block;
-  }
-  .navlink-adminmenu li a{ 
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-  }
-  
-  /* .menu-nav a {
+
+.adminmenu-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.logo-adminmenu {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.navlink-adminmenu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.navlink-adminmenu li {
+  display: inline-block;
+}
+
+.navlink-adminmenu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* .menu-nav a {
     margin-right: 40px;
     color: #ddd;
     text-decoration: none;
     font-size: 25px;
     gap: 45px;
   } */
-  
-  /* .navlink-menu .active {
+
+/* .navlink-menu .active {
     color: #f90;
   } */
-  
-  .navlink-adminmenu li a:hover,.navlink-adminmenu li a:active {
-    color: #ffcc00;
-  }
-  .adminmenu-tag{
-    background-color: #ffa500;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .adminmenu-tag:hover {
-    background-color: #D0671B;
-  }
-  /* .navItem a:hover{
+
+.navlink-adminmenu li a:hover,
+.navlink-adminmenu li a:active {
+  color: #ffcc00;
+}
+
+.adminmenu-tag {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.adminmenu-tag:hover {
+  background-color: #D0671B;
+}
+
+/* .navItem a:hover{
     color: #ffcc00;
   } */
-  /* .menu-tag li a:hover{
+/* .menu-tag li a:hover{
     border: 0.5px solid #ffcc00;
     background-color: white;
     color: black;
   } */
-  
-  /* button:hover{
+
+/* button:hover{
     border: 0.5px solid #ffcc00;
     background-color: white;
     color: black;
   } */
-  /* .user-profile {
+/* .user-profile {
     background-color: #f90;
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 14px;
   } */
-  
-  .adminmenu-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    /* จัดเรียงให้มีระยะห่างระหว่างกัน */
-    margin-top: 200px;
-    /* max-width: 1000px; */
-    /* margin-left: auto;
+
+.adminmenu-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* จัดเรียงให้มีระยะห่างระหว่างกัน */
+  margin-top: 200px;
+  /* max-width: 1000px; */
+  /* margin-left: auto;
     margin-right: auto; */
-    margin: 60px;
-   
-  }
-  
-  
-  .adminmenu-item {
-    background-color: #444;
-    border-radius: 10px;
-    margin: 30px;
-    /* เพิ่ม margin เพื่อให้มีช่องว่างระหว่างแต่ละรายการ */
-    padding: 30px;
-    /* เพิ่ม padding เพื่อขยายขนาดของแต่ละรายการ */
-    width: 300px;
-    /* กำหนดความกว้างของรายการ */
-    text-align: center;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .adminmenu-item:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-    /* เพิ่มเอฟเฟกต์เมื่อ hover */
-  
-  
-  }
-  
-  .adminmenu-item img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .adminmenu-item p {
+  margin: 60px;
+
+}
+
+
+.adminmenu-item {
+  background-color: #444;
+  border-radius: 10px;
+  margin: 30px;
+  /* เพิ่ม margin เพื่อให้มีช่องว่างระหว่างแต่ละรายการ */
+  padding: 30px;
+  /* เพิ่ม padding เพื่อขยายขนาดของแต่ละรายการ */
+  width: 300px;
+  /* กำหนดความกว้างของรายการ */
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.adminmenu-item:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  /* เพิ่มเอฟเฟกต์เมื่อ hover */
+
+
+}
+
+.adminmenu-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* .adminmenu-item p {
     margin: 10px 0;
     font-size: 16px;
     color: #fff;
-  }
-  
-  .adminmenu-item span {
-    color: #f90;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .dropdown-adminmenu {
+  } */
+
+.adminmenu-item span {
+  color: #f90;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.adminmenu-item.sold-out img {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.adminmenu-item.sold-out {
+  background-color: rgb(128, 77, 77);
+  /* เปลี่ยนสีพื้นหลังเป็นสีแดง */
+  color: white;
+}
+
+.adminmenu-item p {
+  font-weight: bold;
+  color: red;
+}
+
+/* .dropdown-adminmenu-menu {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-adminmenu-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #333;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    z-index: 1000;
-    width: 200px;
-  }
-  
-  .dropdown-adminmenu-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dropdown-adminmenu-menu li {
-    padding: 10px;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  .dropdown-adminmenu-menu li:hover {
-    background-color: #555;
-  }
+  } */
+
+.dropdown-adminmenu-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1000;
+  width: 200px;
+}
+
+.dropdown-adminmenu-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-adminmenu-menu li {
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.dropdown-adminmenu-menu li:hover {
+  background-color: #555;
+}
