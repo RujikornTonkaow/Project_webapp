@@ -3,19 +3,14 @@ import './Style/aboutpage.css';
 import { useNavigate } from 'react-router-dom';
 
 const AboutPage = () => {
-    const navigate = useNavigate(); // Initialize the navigate hook
+    const navigate = useNavigate(); 
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [showDropdown, setShowDropdown] = useState(false);
     const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
+        navigate(path);
     };
-    // State สำหรับควบคุมการแสดงปุ่ม Logout
-
-
-    // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
-            // ถ้ามีข้อมูลผู้ใช้ให้แสดง dropdown
             setShowDropdown(!showDropdown);
         } else {
             // ถ้าไม่มีข้อมูลผู้ใช้ให้ไปหน้า login

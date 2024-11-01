@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Style/adminmenupage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function AdminMenupage() {
   const navigate = useNavigate();
@@ -9,18 +10,16 @@ function AdminMenupage() {
   const [menu, setMenu] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // Fetch menu data from API when component mounts
   useEffect(() => {
     axios.get('http://localhost:5000/configmenu')
       .then(response => {
-        // setMenu(response.data);
+
         const updatedMenu = response.data.map(item => ({
-          ...item,
-          status: 'Available'
+          ...item
         }));
         setMenu(updatedMenu);
         console.log(updatedMenu);
-        // console.log(response.data);
+
       })
       .catch(error => {
         console.error('Error fetching menu data:', error);
@@ -51,16 +50,14 @@ function AdminMenupage() {
     localStorage.removeItem('user');
     navigate('/first');
   };
-
   const handonclick = (index) => {
-    // Toggle the status between 'Available' and 'Sold_out'
+
     setMenu(prevMenu => {
       const newMenu = prevMenu.map((item, i) =>
         i === index ? { ...item, status: item.status === 'Available' ? 'Sold_out' : 'Available' } : item
       );
       const updatedItem = newMenu[index];
 
-      // Send the updated status to the server
       axios.put(`http://localhost:5000/updateMenuStatus/${updatedItem.id}`, { status: updatedItem.status })
         .then(response => {
           console.log('Status updated successfully:', response.data);
@@ -70,6 +67,40 @@ function AdminMenupage() {
         });
 
       return newMenu;
+    });
+  };
+  const handleedit = (index) => {
+    const item = menu[index];
+    Swal.fire({
+      title: "แก้ไขราคาของ "+item.name,
+      input: 'number' ,
+      inputLabel: item.name + " "+item.price,
+      inputValue: item.price ,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      preConfirm: (newPrice) => {
+        if (newPrice <= 0) {
+          Swal.showValidationMessage('Price must be greater than zero');
+        }
+        return newPrice;
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newPrice = `${result.value} THB`;
+        axios.put(`http://localhost:5000/updateMenuPrice/${item.id}`, { price: newPrice })
+          .then(response => {
+            setMenu(prevMenu => 
+              prevMenu.map((menuItem, i) =>
+                i === index ? { ...menuItem, price: newPrice} : menuItem
+              )
+            );
+            Swal.fire('Saved!', 'Price has been updated.', 'success');
+          })
+          .catch(error => {
+            console.error('Error updating price:', error);
+            Swal.fire('Error', 'Failed to update price', 'error');
+          });
+      }
     });
   };
   return (
@@ -83,8 +114,6 @@ function AdminMenupage() {
           <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
           <li className="navItem"><a href="#admindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
         </ul>
-        {/* <button className="home-tag">{userData.user}</button> */}
-        {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
         <div className="dropdown-adminmenu">
           <button className="adminmenu-tag" onClick={toggleDropdown}>
             {userData.user || "LOGIN"}
@@ -105,14 +134,23 @@ function AdminMenupage() {
       <section className="adminmenu-items">
         {menu.slice(0, 8).map((item, index) => (
           <div key={index} className={`adminmenu-item ${item.status === 'Sold_out' ? 'sold-out' : ''}`}
-            onClick={() => handonclick(index)}>
+          >
             <img src={`${item.img}`} alt={item.name} />
             <div>{item.name}</div>
             <span>{item.price}</span>
             <p>{item.status}</p>
+            <div className="btt-Container">
+              <button className="editbtt" onClick={() => handleedit(index)}>edit</button>
+              <button className="statusbtt" onClick={() => handonclick(index)}>{item.status}</button>
+
+            </div>
+
+
           </div>
         ))}
+
       </section>
+
     </div>
   );
 }

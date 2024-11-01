@@ -299,6 +299,31 @@ app.put('/updateMenuStatus/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+app.put('/updateMenuPrice/:id', async (req, res) => {
+  const { id } = req.params;
+  const { price } = req.body; // รับข้อมูลราคาจาก body ของ request
+
+  console.log(`Updating menu with ID: ${id}, New price: ${price}`);
+  
+  // ตรวจสอบการเชื่อมต่อกับฐานข้อมูลและการส่งคำสั่ง SQL
+  try {
+    db.query("UPDATE menudb_dtp SET price=? WHERE id=? ", [price, id], (err, result) => {
+      if (err) {
+        console.error("Error updating menu price:", err);
+        return res.status(500).json({ message: 'Failed to update price' });
+      }
+      
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Menu not found' });
+      }
+
+      res.json({ message: 'Menu price updated successfully', id: id, price: price });
+    });
+  } catch (error) {
+    console.error('Error updating menu:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
 // เริ่มต้นเซิร์ฟเวอร์
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

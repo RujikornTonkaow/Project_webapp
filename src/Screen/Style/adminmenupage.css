@@ -227,3 +227,18 @@ body {
 .dropdown-adminmenu-menu li:hover {
   background-color: #555;
 }
+.btt-Container {
+  display: flex;
+  justify-content: space-around;
+  /* margin-top: 40px; */
+}
+.statusbtt,.editbtt {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #ee681b;
+  color: white;
+  transition: background-color 0.3s ease;
+}

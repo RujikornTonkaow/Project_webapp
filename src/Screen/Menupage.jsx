@@ -77,7 +77,7 @@ function Menupage() {
 
       <section className="menu-items">
         {menu.slice(0, 8).map((item, index) => (
-          <div key={index} className="menu-item">
+          <div key={index} className={`menu-item ${item.status === 'Sold_out' ? 'sold-out' : ''}`}>
             <img src={`${item.img}`} alt={item.name} />
             <div>{item.name}</div>
             <span>{item.price}</span>

@@ -154,7 +154,13 @@ body {
 
 
 }
-
+.menu-item.sold-out {
+  opacity: 0.5;
+  filter: grayscale(100%);
+  /* background-color: red;
+  color: white; 
+  opacity: 0.7;  */
+}
 .menu-item img {
   width: 200px;
   height: 180px;
