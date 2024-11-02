@@ -5,10 +5,6 @@ body {
     background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
     background-size: cover;
     background-position: center;
-    /* box-sizing: border-box; */
-
-    /* line-height: 1.6; */
-    /* height: 100vh; */
 }
 
 .rotate-y {
@@ -32,15 +28,6 @@ body {
     position: relative;
     overflow: hidden;
 }
-
-
-/* .headerContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
-} */
 
 .logo-regi {
     font-size: 1.8rem;
@@ -85,23 +72,6 @@ body {
 .navItem li a:active {
     color: #f39c12;
 }
-
-/* .nav li a:hover {
-    color: #ffcc00;
-}
-
-.navItem a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-.navItem a:hover {
-    color: #f39c12;
-} */
-
 
 .register-container {
     display: flex;

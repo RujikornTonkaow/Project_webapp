@@ -1,181 +1,155 @@
-/* Header Styles */
-
 .header-adminchef {
-    /* display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #333;
-      padding: 20px;
-      color: white;
-      margin-bottom: 0; */
-  
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  
-  .navbar-adminchef {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .logo-adminchef {
-    font-size: 1.8rem;
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  .navLinks-adminchef {
-    list-style-type: none;
-    display: flex;
-    gap: 20px;
-    margin: 0 auto;
-  }
-  
-  .navLinks-adminhef li {
-    display: inline-block;
-  }
-  
-  .navLinks-adminchef li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-  
-  }
-  
-  .navItem li a:active {
-    color: #f39c12;
-  }
-  
-  .navLinks-adminchef li a:hover,
-  .navLinks-adminchef li a:active {
-    color: #ffcc00;
-  }
-  
-  .adminchef-tag {
-    background-color: #ffa500;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .adminchef-tag:hover {
-    background-color: #D0671B;
-  }
-  
-  /* Highlighted Name Section */
-  /* .highlighted-name {
-    font-size: 20px;
-    color: #ffa500;
-    margin-left: auto;
-    padding: 10px;
-  } */
-  
-  /* Chef Page Styles */
-  .chefPage-adminchef {
-    padding: 0;
-    background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-  
-  }
-  
-  /* Chef Grid Layout */
-  .chefGrid-adminchef {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    padding-top: 0;
-    justify-content: center;
-    margin-top: 0;
-    /* เอาช่องว่างด้านบนออกให้หมด */
-    position: relative;
-    top: 110px;
-    /* ขยับขึ้นไปให้ใกล้กับเมนูบาร์ แต่ไม่ติด */
-  
-  }
-  
-  /* Chef Card Styles */
-  .chefCard-adminchef {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 10px;
-    margin-top: 0;
-    /* border: 1px solid red; */
-    transition: transform 0.3s ease;
-  }
-  
-  .chefCard-adminchef:hover {
-    transform: scale(1.05);
-  }
-  
-  .chefImage-adminchef {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-    object-fit: cover;
-    margin-bottom: 10px;
-    margin-top: 0;
-  }
-  
-  .chefDescription-adminchef {
-    font-size: 16px;
-    color: #333;
-    padding: 10px;
-  }
-  
-  .dropdown-adminchef {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-adminchef-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #333;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    z-index: 1000;
-    width: 200px;
-  }
-  
-  .dropdown-adminchef-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dropdown-adminchef-menu li {
-    padding: 10px;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  .dropdown-adminchef-menu li:hover {
-    background-color: #555;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.navbar-adminchef {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.logo-adminchef {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.navLinks-adminchef {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.navLinks-adminhef li {
+  display: inline-block;
+}
+
+.navLinks-adminchef li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.navItem li a:active {
+  color: #f39c12;
+}
+
+.navLinks-adminchef li a:hover,
+.navLinks-adminchef li a:active {
+  color: #ffcc00;
+}
+
+.adminchef-tag {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.adminchef-tag:hover {
+  background-color: #D0671B;
+}
+
+.chefPage-adminchef {
+  padding: 0;
+  background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+
+}
+
+.chefGrid-adminchef {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  padding-top: 0;
+  justify-content: center;
+  margin-top: 0;
+  position: relative;
+  top: 110px;
+
+}
+
+.chefCard-adminchef {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px;
+  margin-top: 0;
+  transition: transform 0.3s ease;
+}
+
+.chefCard-adminchef:hover {
+  transform: scale(1.05);
+}
+
+.chefImage-adminchef {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  object-fit: cover;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.chefDescription-adminchef {
+  font-size: 16px;
+  color: #333;
+  padding: 10px;
+}
+
+.dropdown-adminchef {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-adminchef-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1000;
+  width: 200px;
+}
+
+.dropdown-adminchef-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-adminchef-menu li {
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.dropdown-adminchef-menu li:hover {
+  background-color: #555;
+}

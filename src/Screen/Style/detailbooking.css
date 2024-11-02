@@ -2,24 +2,16 @@ body {
     margin: 0;
     padding: 0;
     background-color: #333;
-    /* พื้นหลังสีเทา */
 }
+
 .no-data {
     text-align: center;
     font-size: 18px;
     color: #ff0000;
     margin-top: 20px;
 }
+
 .detail-container {
-    /* font-family: Arial, sans-serif;
-    color: white;
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; */
     padding: 0;
     background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
     background-size: cover;
@@ -65,7 +57,6 @@ body {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
-
 }
 
 .navlink-detail li a:hover,
@@ -83,11 +74,6 @@ body {
     font-size: 14px;
 }
 
-/* .detail-table{
-    padding: 10px;
-    margin-top: 140px;
-    border: 2px solid red;
-} */
 .detail-title {
     color: white;
 
@@ -142,7 +128,6 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-size: 20px;
-
 }
 
 .home-button:hover {
@@ -181,24 +166,17 @@ body {
 .dropdowndetail-menu li:hover {
     background-color: #555;
 }
+
 .my-actions {
     margin: 2em 2em 0;
-  }
-  
-  .order-1 {
+}
+
+.order-1 {
     order: 1;
     background-color: #FF0000;
-  }
-  
-  .order-2 {
+}
+
+.order-2 {
     order: 2;
     background-color: #32CD32;
-  }
-/*   
-  .order-3 {
-    order: 3;
-  }
-   */
-  /* .right-gap {
-    margin-right: auto;
-  } */
+}

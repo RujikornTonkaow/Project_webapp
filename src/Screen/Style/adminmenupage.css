@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #333;
-  /* พื้นหลังสีเทา */
 }
 
 .adminmenu-container {
@@ -15,27 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-
 }
-
-
-/* .menu-header {
-    display: flex; /* ใช้ Flexbox เพื่อจัดวางในแนวนอน */
-/* justify-content: space-between; /* กระจายเนื้อหาตามความกว้าง */
-/* align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-/*  position: fixed;
-    top: 0; ชิดขอบบน */
-/* right: 0;
-    background-color: #000;
-    width: 100%;
-    padding: 10px 20px; /* เพิ่ม padding เพื่อให้สวยงาม */
-/*  z-index: 1000;
-  } */
-
-/* .menu-header h1 {
-    margin: 0;
-    font-size: 48px;
-  } */
 
 .adminmenu-nav {
   position: fixed;
@@ -72,18 +51,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* .menu-nav a {
-    margin-right: 40px;
-    color: #ddd;
-    text-decoration: none;
-    font-size: 25px;
-    gap: 45px;
-  } */
-
-/* .navlink-menu .active {
-    color: #f90;
-  } */
-
 .navlink-adminmenu li a:hover,
 .navlink-adminmenu li a:active {
   color: #ffcc00;
@@ -103,50 +70,20 @@ body {
   background-color: #D0671B;
 }
 
-/* .navItem a:hover{
-    color: #ffcc00;
-  } */
-/* .menu-tag li a:hover{
-    border: 0.5px solid #ffcc00;
-    background-color: white;
-    color: black;
-  } */
-
-/* button:hover{
-    border: 0.5px solid #ffcc00;
-    background-color: white;
-    color: black;
-  } */
-/* .user-profile {
-    background-color: #f90;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-  } */
-
 .adminmenu-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* จัดเรียงให้มีระยะห่างระหว่างกัน */
   margin-top: 200px;
-  /* max-width: 1000px; */
-  /* margin-left: auto;
-    margin-right: auto; */
   margin: 60px;
-
 }
-
 
 .adminmenu-item {
   background-color: #444;
   border-radius: 10px;
   margin: 30px;
-  /* เพิ่ม margin เพื่อให้มีช่องว่างระหว่างแต่ละรายการ */
   padding: 30px;
-  /* เพิ่ม padding เพื่อขยายขนาดของแต่ละรายการ */
   width: 300px;
-  /* กำหนดความกว้างของรายการ */
   text-align: center;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -155,9 +92,6 @@ body {
 .adminmenu-item:hover {
   transform: scale(1.05);
   cursor: pointer;
-  /* เพิ่มเอฟเฟกต์เมื่อ hover */
-
-
 }
 
 .adminmenu-item img {
@@ -166,12 +100,6 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
-
-/* .adminmenu-item p {
-    margin: 10px 0;
-    font-size: 16px;
-    color: #fff;
-  } */
 
 .adminmenu-item span {
   color: #f90;
@@ -186,7 +114,6 @@ body {
 
 .adminmenu-item.sold-out {
   background-color: rgb(128, 77, 77);
-  /* เปลี่ยนสีพื้นหลังเป็นสีแดง */
   color: white;
 }
 
@@ -194,11 +121,6 @@ body {
   font-weight: bold;
   color: red;
 }
-
-/* .dropdown-adminmenu-menu {
-    position: relative;
-    display: inline-block;
-  } */
 
 .dropdown-adminmenu-menu {
   position: absolute;
@@ -227,12 +149,14 @@ body {
 .dropdown-adminmenu-menu li:hover {
   background-color: #555;
 }
+
 .btt-Container {
   display: flex;
   justify-content: space-around;
-  /* margin-top: 40px; */
 }
-.statusbtt,.editbtt {
+
+.statusbtt,
+.editbtt {
   padding: 10px 20px;
   border: none;
   border-radius: 25px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // ใช้สำหรับดึงข้อมูลโต๊ะจาก state
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Style/tablebooking.css';
 import Axios from 'axios';
 import Swal from 'sweetalert2'
@@ -7,18 +7,18 @@ import Swal from 'sweetalert2'
 
 const TableBooking = () => {
     const location = useLocation();
-    const { table ,day ,time , time_end ,phone,name} = location.state || {}; // ดึงข้อมูลโต๊ะที่เลือกจาก state
+    const { table, day, time, time_end} = location.state || {};
 
     const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState(false);
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [form, setForm] = useState({
-        name:userData.user,
-        day: day ,
-        time: time  ,
-        table: table ,
+        name: userData.user,
+        day: day,
+        time: time,
+        table: table,
         time_end: time_end,
-        phone:userData.tel
+        phone: userData.tel
     });
 
     const handleChange = (e) => {
@@ -27,28 +27,23 @@ const TableBooking = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // handle form submission
         console.log(form);
     };
     const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
+        navigate(path);
     };
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
             setUserData(storedUser);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
             navigate('/first');
         }
     }, [navigate]);
-    // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
-            // ถ้ามีข้อมูลผู้ใช้ให้แสดง dropdown
             setShowDropdown(!showDropdown);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ให้ไปหน้า login
             navigate('/login');
         }
     };
@@ -58,17 +53,14 @@ const TableBooking = () => {
     const goToBookingHistory = () => {
         navigate('/detailbooking');
     };
-    // ฟังก์ชันจัดการ Logout
     const handleLogout = () => {
-        // ลบข้อมูลผู้ใช้จาก localStorage
         localStorage.removeItem('user');
-        // นำทางกลับไปหน้า login
         navigate('/first');
     };
     const handleSuccess = () => {
 
         Axios.post('http://localhost:5000/tablebooking', {
-            table_no : form.table,
+            table_no: form.table,
             user: userData.user,
             tel: userData.tel,
             day: form.day,
@@ -77,7 +69,7 @@ const TableBooking = () => {
 
         }).then((response) => {
             const doubleCheckIcon =
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="32"><path d="M342.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 178.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l80 80c12.5 12.5 32.8 12.5 45.3 0l160-160zm96 128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 402.7 54.6 297.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256z" fill="currentColor" /></svg>'
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="32"><path d="M342.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 178.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l80 80c12.5 12.5 32.8 12.5 45.3 0l160-160zm96 128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 402.7 54.6 297.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l256-256z" fill="currentColor" /></svg>'
 
             Swal.fire({
                 title: 'Success',
@@ -93,8 +85,8 @@ const TableBooking = () => {
                     day: form.day,
                     time: form.time,
                     time_end: form.time_end,
-                    name:userData.user,
-                    phone:userData.tel
+                    name: userData.user,
+                    phone: userData.tel
                 }
             });
 
@@ -102,13 +94,7 @@ const TableBooking = () => {
             console.error("Error registering user:", error);
             alert("Error registering user.");
         });
-
-
-
     }
-
-
-
 
     return (
         <div className="table-booking-container">
@@ -121,8 +107,7 @@ const TableBooking = () => {
                     <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
                     <li className="navItem"><a href="#settime" className="active" onClick={() => handleNavClick('/settime')}>Table Booking</a></li>
                 </ul>
-                {/* <button className="home-tag">{userData.user}</button> */}
-                {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
+
                 <div className="dropdown-booking">
                     <button className="booking-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}

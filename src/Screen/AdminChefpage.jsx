@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './Style/adminchefpage.css'; // Import the combined CSS
+import './Style/adminchefpage.css';
 import { useNavigate } from 'react-router-dom';
-
-// Chef data
 
 const chefData = [
   {
@@ -18,7 +16,7 @@ const chefData = [
     description: "นายชนิตฒ์พล แสงรักษา เชฟดังชาวญี่ปุ่น-เปรู เจ้าของร้านอาหารชื่อเดียวกับตัวเองมากกว่า 30 แห่งทั่วโลก"
   }
 ];
-// ChefCard Component
+
 function ChefCard({ image, description }) {
   return (
     <article className="chefCard-adminchef">
@@ -28,21 +26,17 @@ function ChefCard({ image, description }) {
   );
 }
 
-// Header Component with highlighted name
 function Header() {
-  const navigate = useNavigate(); // Initialize the navigate hook
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
-
   const [showDropdown, setShowDropdown] = useState(false);
-
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       setUserData(storedUser);
     } else {
-      // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
-      // navigate('/login');
+
     }
   }, [navigate]);
   const toggleDropdown = () => {
@@ -58,28 +52,23 @@ function Header() {
   const handleLogout = () => {
     // ลบข้อมูลผู้ใช้จาก localStorage
     localStorage.removeItem('user');
-    // นำทางกลับไปหน้า login
     navigate('/first');
   };
   const handleNavClick = (path) => {
-    navigate(path); // Navigate to the given path
+    navigate(path);
   };
 
   return (
     <header className="header-adminchef">
       <nav className="navbar-adminchef">
         <div className="logo-adminchef">DPT Restaurant</div>
-        {/* <h1 className="logo-chef">DPT Restaurant</h1> */}
         <ul className="navLinks-adminchef">
-
           <li className="navItem"><a href="#adminhome" onClick={() => handleNavClick('/adminhome')}>Home</a></li>
           <li className="navItem"><a href="#adminabout" onClick={() => handleNavClick('/adminabout')}>About</a></li>
           <li className="navItem"><a href="#adminmenu" onClick={() => handleNavClick('/adminmenu')}>Recommended Menu</a></li>
           <li className="navItem"><a href="#adminchef" className='active' onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
           <li className="navItem"><a href="#admindetail" onClick={() => handleNavClick('/admindetail')}>Table Booking</a></li>
         </ul>
-        {/* <button className="home-tag">{userData.user}</button> */}
-        {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
         <div className="dropdown-adminchef">
           <button className="adminchef-tag" onClick={toggleDropdown}>
             {userData.user || "LOGIN"}
@@ -99,10 +88,7 @@ function Header() {
     </header>
   );
 }
- 
-// Main ChefPage Component
 function AdminChefpage() {
-
   return (
     <main className="chefPage-adminchef">
       <Header />

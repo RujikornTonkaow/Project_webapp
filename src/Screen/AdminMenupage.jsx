@@ -15,8 +15,6 @@ function AdminMenupage() {
     if (storedUser) {
       setUserData(storedUser);
     } else {
-      // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
-      // navigate('/first');
     }
     axios.get('http://localhost:5000/configmenu')
       .then(response => {
@@ -149,15 +147,10 @@ function AdminMenupage() {
             <div className="btt-Container">
               <button className="editbtt" onClick={() => handleedit(index)}>edit</button>
               <button className="statusbtt" onClick={() => handonclick(index)}>{item.status}</button>
-
             </div>
-
-
           </div>
         ))}
-
       </section>
-
     </div>
   );
 }

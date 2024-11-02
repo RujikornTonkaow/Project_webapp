@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -8,17 +7,11 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
-    /* line-height: 1.6; */
-
     background-image: "url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42')";
     background-size: 'cover';
     background-position: 'center';
-    
-
 }
 
-
-/* Header Styles */
 .login-header {
     width: 100%;
     height: 100vh;
@@ -30,15 +23,6 @@ body {
     position: relative;
     overflow: hidden;
 }
-
-/* Navigation Bar */
-/* .headerContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
-} */
 
 .navbar-login {
     position: fixed;
@@ -67,7 +51,7 @@ body {
 
 .navlink-login li {
     display: inline-block;
-    
+
 }
 
 .navlink-login li a {
@@ -79,23 +63,13 @@ body {
 .navlink-login li a:hover,
 .navlink-login li a:active {
     color: #ffcc00;
-    
+
 }
 
 .navItem li a:active {
     color: #f39c12;
 }
 
-/* .navItem a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 18px;
-    transition: color 0.3s ease;
-} */
-
-
-/* Login Section */
 .loginSection {
     display: flex;
     justify-content: center;
@@ -120,7 +94,6 @@ body {
     color: white;
     font-size: 28px;
     margin-bottom: 20px;
-    /* margin-top: 10px; */
 }
 
 .inputField {
@@ -134,7 +107,7 @@ body {
     outline: none;
     text-indent: 10px;
 }
- 
+
 .buttonContainer {
     display: flex;
     justify-content: space-around;
@@ -157,10 +130,12 @@ body {
 .registerButton:hover {
     background-color: #d35400;
 }
+
 .rotate-y {
     animation: rotateY 1s infinite linear;
 }
 
+/* ใช้สำหรับของ sweetalert */
 @keyframes rotateY {
     to {
         transform: rotateY(360deg);

@@ -5,26 +5,6 @@ body {
     background-color: #2d2d2d;
 }
 
-/* .settime-Page {
-    /* text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; */
-    /* font-family: Arial, sans-serif;
-    color: white;
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; */
-
-/* } */ 
-
-/* Navbar Styles */
 .navbarsettime {
     position: fixed;
     top: 0;
@@ -35,8 +15,6 @@ body {
     align-items: center;
     padding: 20px 20px;
     background-color: rgba(0, 0, 0, 0.7);
-
-    /* z-index: 1000; */
 }
 
 .logo-settime {
@@ -75,20 +53,6 @@ body {
     transition: color 0.3s ease;
 }
 
-/* .navItem a:active {
-    color: #f39c12;
-  }
-  
-  .navItem a:hover {
-    color: #ffcc00;
-  } */
-
-/* .navLinks-table li a:hover,
-  .navLinks-table li a:active {
-    color: #ffcc00;
-     เปลี่ยนสีเมื่อ hover หรือ active */
-
-
 .settime-tag {
     background-color: #ffa500;
     color: white;
@@ -103,7 +67,6 @@ body {
     background-color: #D0671B;
 }
 
-
 .settime-container {
     display: flex;
     justify-content: center;
@@ -113,7 +76,6 @@ body {
     background-size: cover;
     background-position: center;
 }
-
 
 .settime-form {
     background-color: black;

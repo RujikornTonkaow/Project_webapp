@@ -3,7 +3,7 @@ import './Style/aboutpage.css';
 import { useNavigate } from 'react-router-dom';
 
 const AboutPage = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [showDropdown, setShowDropdown] = useState(false);
     const handleNavClick = (path) => {
@@ -13,8 +13,6 @@ const AboutPage = () => {
         if (userData.user) {
             setShowDropdown(!showDropdown);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ให้ไปหน้า login
-            // navigate('/first');
         }
     };
     const goToAccount = () => {
@@ -24,11 +22,9 @@ const AboutPage = () => {
         navigate('/detailbooking');
     };
 
-    // ฟังก์ชันจัดการ Logout
     const handleLogout = () => {
         // ลบข้อมูลผู้ใช้จาก localStorage
         localStorage.removeItem('user');
-        // นำทางกลับไปหน้า login
         navigate('/first');
     };
     useEffect(() => {
@@ -36,8 +32,6 @@ const AboutPage = () => {
         if (storedUser) {
             setUserData(storedUser);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
-            // navigate('/login');
         }
     }
         , [navigate]);
@@ -54,11 +48,6 @@ const AboutPage = () => {
                     <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
                     <li className="navItem"><a href="#settime" onClick={() => handleNavClick('/settime')}>Table Booking</a></li>
                 </ul>
-                {/* <div className="chef-tag">
-                    <span>Ruijkorn Imtrakun</span>
-                </div> */}
-                {/* <button className="home-tag">{userData.user}</button> */}
-                {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
                 <div className="dropdown-about">
                     <button className="about-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}

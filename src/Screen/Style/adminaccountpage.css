@@ -15,7 +15,6 @@ body {
     background-position: center;
 }
 
-/* Navbar Styles */
 .navbar-adminaccount {
     position: fixed;
     top: 0;
@@ -26,8 +25,6 @@ body {
     align-items: center;
     padding: 20px 20px;
     background-color: rgba(0, 0, 0, 0.7);
-
-    /* z-index: 1000; */
 }
 
 .logo-adminaccount {
@@ -66,20 +63,6 @@ body {
     transition: color 0.3s ease;
 }
 
-/* .navItem a:active {
-    color: #f39c12;
-  }
-  
-  .navItem a:hover {
-    color: #ffcc00;
-  } */
-
-/* .navLinks-table li a:hover,
-  .navLinks-table li a:active {
-    color: #ffcc00;
-     เปลี่ยนสีเมื่อ hover หรือ active */
-
-
 .adminaccount-tag {
     background-color: #ffa500;
     color: white;
@@ -94,10 +77,8 @@ body {
     background-color: #D0671B;
 }
 
-
 .box-showadmin {
     background-color: rgb(63, 63, 63);
-    /* border: 2px solid red; */
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -110,14 +91,14 @@ h2 {
     color: #ffa500;
     text-align: start;
     font-size: 1.8em;
-    /* margin-top: 10px; */
 }
-h3{
+
+h3 {
     text-align: start;
     padding-left: 15px;
 }
+
 .form-boxadmin {
-    /* background-color: red; */
     margin-top: 10px;
     font-size: 1.2em;
 }
@@ -135,11 +116,10 @@ h3{
 
     margin-top: 40px;
 }
-.adminabout-button-history:hover{
-    
-    background-color: #D0671B;
 
-} 
+.adminabout-button-history:hover {
+    background-color: #D0671B;
+}
 
 .dropdown-adminaccount {
     position: relative;

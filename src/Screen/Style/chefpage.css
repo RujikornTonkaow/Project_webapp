@@ -1,21 +1,10 @@
-/* Header Styles */
-
 .header-chef {
-  /* display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 20px;
-    color: white;
-    margin-bottom: 0; */
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
-
 
 .navbar-chef {
   position: fixed;
@@ -76,7 +65,6 @@
   background-color: #D0671B;
 }
 
-/* Highlighted Name Section */
 .highlighted-name {
   font-size: 20px;
   color: #ffa500;
@@ -84,7 +72,6 @@
   padding: 10px;
 }
 
-/* Chef Page Styles */
 .chefPage-chef {
   padding: 0;
   background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
@@ -99,7 +86,6 @@
 
 }
 
-/* Chef Grid Layout */
 .chefGrid-chef {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -108,14 +94,10 @@
   padding-top: 0;
   justify-content: center;
   margin-top: 0;
-  /* เอาช่องว่างด้านบนออกให้หมด */
   position: relative;
   top: 110px;
-  /* ขยับขึ้นไปให้ใกล้กับเมนูบาร์ แต่ไม่ติด */
-
 }
 
-/* Chef Card Styles */
 .chefCard-chef {
   background-color: white;
   border-radius: 10px;
@@ -124,7 +106,6 @@
   text-align: center;
   padding: 10px;
   margin-top: 0;
-  /* border: 1px solid red; */
   transition: transform 0.3s ease;
 }
 

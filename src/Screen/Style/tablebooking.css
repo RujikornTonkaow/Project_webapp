@@ -25,8 +25,6 @@ body {
     align-items: center;
     padding: 20px 20px;
     background-color: rgba(0, 0, 0, 0.7);
-
-    /* z-index: 1000; */
 }
 
 .logo-booking {
@@ -65,20 +63,6 @@ body {
     transition: color 0.3s ease;
 }
 
-/* .navItem a:active {
-    color: #f39c12;
-  }
-  
-  .navItem a:hover {
-    color: #ffcc00;
-  } */
-
-/* .navLinks-table li a:hover,
-  .navLinks-table li a:active {
-    color: #ffcc00;
-     เปลี่ยนสีเมื่อ hover หรือ active */
-
-
 .booking-tag {
     background-color: #ffa500;
     color: white;
@@ -92,6 +76,7 @@ body {
 .booking-tag:hover {
     background-color: #D0671B;
 }
+
 .table-booking-form {
     background-color: black;
     padding: 30px;
@@ -157,6 +142,7 @@ body {
 input:disabled {
     background-color: #222;
 }
+
 .dropdown-booking {
     position: relative;
     display: inline-block;

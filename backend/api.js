@@ -111,7 +111,7 @@ app.get('/tableforbooking', function (req, res) {
     if (err) {
       return res.status(400).send('Not found');
     }
-    res.send(result); // Send the query results to the frontend
+    res.send(result);
   });
 });
 
@@ -127,15 +127,12 @@ app.post("/register", (req, res) => {
   if (!user || !password || !tel || !role) {
     return res.status(400).json({ error: "Please provide all required fields" });
   }
-
-  // Hash the password before storing it in the database
   bcrypt.hash(password, 10, (err, hashedPassword) => {
     if (err) {
       console.error("Error hashing password:", err);
       return res.status(500).json({ error: "Failed to register user" });
     }
-
-    // คำสั่ง SQL ในการแทรกข้อมูลผู้ใช้ใหม่ลงในฐานข้อมูล
+    //แทรกข้อมูลผู้ใช้ใหม่ลงในฐานข้อมูล
     const query = "INSERT INTO userdb_dtp (user, password, tel, role) VALUES (?, ?, ?, ?)";
 
     db.query(query, [user, hashedPassword, tel, role], (err, results) => {
@@ -172,18 +169,17 @@ app.post('/login', (req, res) => {
     const userData = results[0];
     const storedHashedPassword = userData.password;
     console.log('Stored hashed password from DB:', storedHashedPassword);
-    // Debugging
-    console.log('Input password:', password); // Log input password
+    console.log('Input password:', password);
 
     // เปรียบเทียบรหัสผ่าน
     bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
-      console.log('Stored hashed password:', storedHashedPassword); // Log hashed password from DB
+      console.log('Stored hashed password:', storedHashedPassword);
       if (err) {
         console.error('Error comparing passwords:', err);
         return res.status(500).json({ error: 'Internal server error' });
       }
 
-      console.log('Password match:', isMatch); // Log result of comparison
+      console.log('Password match:', isMatch);
       if (isMatch) {
         return res.status(200).json({
           message: 'Login successful',
@@ -202,9 +198,6 @@ app.post('/login', (req, res) => {
 
 app.post("/tablebooking", (req, res) => {
   const { table_no, user, tel, day, time_in, time_out } = req.body;
-
-
-  // คำสั่ง SQL ในการแทรกข้อมูลผู้ใช้ใหม่ลงในฐานข้อมูล
   const query = "INSERT INTO timedb_dtp (table_no , user , tel , day , time_in , time_out) VALUES (?, ?, ?, ?,?,?)";
 
   db.query(query, [table_no, user, tel, day, time_in, time_out], (err, results) => {
@@ -227,7 +220,7 @@ app.get('/api/bookings/:user', (req, res) => {
     }
 
     if (results.length === 0) {
-      return res.status(404).json({ message: "No bookings found" }); // ส่งสถานะ 404 ถ้าไม่มีข้อมูล
+      return res.status(404).json({ message: "No bookings found" });
     }
 
     res.status(200).json(results);
@@ -237,7 +230,7 @@ app.get('/api/bookings/:user', (req, res) => {
 // API สำหรับลบการจองตาม id
 app.delete('/api/delbookings/:id', (req, res) => {
   const id = req.params.id;
-  const query = 'DELETE FROM timedb_dtp WHERE id = ?'; // ใช้ '?' เพื่อป้องกัน SQL Injection
+  const query = 'DELETE FROM timedb_dtp WHERE id = ?';
 
   db.query(query, [id], (err, result) => {
     if (err) {
@@ -254,7 +247,7 @@ app.delete('/api/delbookings/:id', (req, res) => {
     });
   });
 });
-// });
+
 app.get('/api/bookings/:id', function (req, res) {
   const id = req.params.id;
   db.query("SELECT *FROM timedb_dtp where id=" + id, function (err, result, fields) {
@@ -276,7 +269,7 @@ app.get('/configmenu', function (req, res) {
     if (err) {
       return res.status(400).send('Not found');
     }
-    res.status(200).json(result); // Send the query results to the frontend
+    res.status(200).json(result);
   });
 });
 
@@ -304,15 +297,14 @@ app.put('/updateMenuPrice/:id', async (req, res) => {
   const { price } = req.body; // รับข้อมูลราคาจาก body ของ request
 
   console.log(`Updating menu with ID: ${id}, New price: ${price}`);
-  
-  // ตรวจสอบการเชื่อมต่อกับฐานข้อมูลและการส่งคำสั่ง SQL
+
   try {
     db.query("UPDATE menudb_dtp SET price=? WHERE id=? ", [price, id], (err, result) => {
       if (err) {
         console.error("Error updating menu price:", err);
         return res.status(500).json({ message: 'Failed to update price' });
       }
-      
+
       if (result.affectedRows === 0) {
         return res.status(404).json({ message: 'Menu not found' });
       }
@@ -324,7 +316,7 @@ app.put('/updateMenuPrice/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-// เริ่มต้นเซิร์ฟเวอร์
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

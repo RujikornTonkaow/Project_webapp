@@ -1,5 +1,4 @@
 
-
 * {
   margin: 0;
   padding: 0;
@@ -10,14 +9,11 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
   line-height: 1.6;
-  /* เป็นการกำหนดความสูงของบรรทัด เพื่อควบคุมระยะห่างระหว่างบรรทัดของข้อความที่แสดงในเอกสาร*/
   background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
   background-size: cover;
   background-position: center;
 }
 
-
-/* Header Styles */
 .home-header {
   width: 100%;
   height: 100vh;
@@ -31,7 +27,6 @@ body {
   overflow: hidden;
 }
 
-/* Overlay for Dark Effect */
 .overlay {
   position: absolute;
   top: 0;
@@ -42,17 +37,6 @@ body {
   z-index: 1;
   /*เพื่อกำหนดลำดับการเรียงซ้อน องค์ประกอบนี้จะถูกแสดงทับองค์ประกอบที่มีค่า z-index ต่ำกว่า*/
 }
-
-/* Navigation Bar */
-/* .headerContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-    background-color: rgba(0, 0, 0, 0.8); }/* Semi-transparent background */
-
 
 .logo-home {
   font-size: 1.8rem;
@@ -98,29 +82,19 @@ body {
   color: #ffcc00;
 }
 
-/* 
-.navItem a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 18px;
-  transition: color 0.3s ease;
-} */
 .navItem li a:active {
   color: #f39c12;
 }
 
 .navItem a.active {
-  /* background-color: #ff7f1d; */
   color: #ff7f1d;
   border-radius: 5px;
 }
 
-/* Hero Section */
-
 .userColumn {
   padding-right: 20px;
 }
+
 .home-tag{
   background-color: #ffa500;
   color: white;
@@ -129,15 +103,8 @@ body {
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-  /* z-index: 2;*/
 } 
-/* .username {
-  color: white;
-  font-size: 16px;
-  background-color: rgba(255, 127, 29, 0.9);
-  padding: 5px 10px;
-  border-radius: 20px;
-} */
+
 
 .heroSection-home {
   display: flex;
@@ -146,12 +113,10 @@ body {
   width: 103%;
   height: 80%;
   position: relative;
-  /* z-index: 0; */
   color: white;
   margin-top: -45px;
   background-size: cover;
   background-position: center;
-  /* border: 1px solid red; */
 }
 
 .heroContent-home{
@@ -220,7 +185,6 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-
 }
 
 .dropdowndetail-menu li {

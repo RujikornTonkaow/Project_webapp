@@ -6,12 +6,11 @@ import Axios from 'axios';
 function AdminDetailBooking() {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
-    // const [names, setNames] = useState("");
 
-    const [bookings, setBookings] = useState([]);//เก็บค่าข้อมูลในdbตาม name
+    const [bookings, setBookings] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
+        navigate(path);
     };
 
     useEffect(() => {
@@ -19,12 +18,11 @@ function AdminDetailBooking() {
         if (storedUser) {
             setUserData(storedUser);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
             navigate('/first');
         }
         Axios.get(`http://localhost:5000/time`)
             .then(response => {
-                setBookings(response.data);//เก็บค่าข้อมูลในdbตาม name
+                setBookings(response.data);//เก็บค่าข้อมูลในdbตาม 
             })
             .catch(error => {
                 if (error.response && error.response.status === 404) {
@@ -45,13 +43,11 @@ function AdminDetailBooking() {
                 console.log("error");
             });
     }
-    // ฟังก์ชันจัดการการคลิกเพื่อแสดงปุ่ม Logout
     const toggleDropdown = () => {
         if (userData.user) {
             // ถ้ามีข้อมูลผู้ใช้ให้แสดง dropdown
             setShowDropdown(!showDropdown);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ให้ไปหน้า login
             navigate('/login');
         }
     };
@@ -61,21 +57,14 @@ function AdminDetailBooking() {
     const goToBookingHistory = () => {
         navigate('/admindetail');
     };
-
-    // ฟังก์ชันจัดการ Logout
     const handleLogout = () => {
         // ลบข้อมูลผู้ใช้จาก localStorage
         localStorage.removeItem('user');
-        // นำทางกลับไปหน้า login
         navigate('/first');
     };
 
-
-
     return (
         <div className="admindetail-container">
-            {/* <header className="menu-header"> */}
-
             <nav className="admindetail-nav">
                 <div className="logo-admindetail">DPT Restaurant</div>
                 <ul className="navlink-admindetail">
@@ -85,8 +74,6 @@ function AdminDetailBooking() {
                     <li className="navItem"><a href="#adminchef" onClick={() => handleNavClick('/adminchef')}>Chef</a></li>
                     <li className="navItem"><a href="#admindetail" className="active" onClick={() => handleNavClick('/admindetail')}>Table booking</a></li>
                 </ul>
-                {/* <button className="home-tag">{userData.user}</button> */}
-                {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
                 <div className="dropdown-admindetail">
                     <button className="admindetail-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}

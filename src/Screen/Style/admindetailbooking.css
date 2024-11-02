@@ -2,24 +2,16 @@ body {
     margin: 0;
     padding: 0;
     background-color: #333;
-    /* พื้นหลังสีเทา */
 }
+
 .adminno-data {
     text-align: center;
     font-size: 18px;
     color: #ff0000;
     margin-top: 20px;
 }
+
 .admindetail-container {
-    /* font-family: Arial, sans-serif;
-    color: white;
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; */
     padding: 0;
     background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/73e3e4e2161bef832c15feace46c9bf2331bd996fc578ef78604fbb928d7cc6d?placeholderIfAbsent=true&apiKey=7aefd214296441c28ddce98b0512bc42');
     background-size: cover;
@@ -83,14 +75,8 @@ body {
     font-size: 14px;
 }
 
-/* .detail-table{
-    padding: 10px;
-    margin-top: 140px;
-    border: 2px solid red;
-} */
 .admindetail-title {
     color: white;
-
     margin-top: 140px;
     font-size: 30px;
     font-weight: bold;
@@ -99,7 +85,6 @@ body {
 .admindetail-table {
     font-size: 20px;
     width: 80%;
-    /* overflow-y: auto; */
     margin-top: 20px;
     border-collapse: collapse;
     color: white;
@@ -143,7 +128,6 @@ body {
     cursor: pointer;
     font-size: 20px;
     margin-bottom: 30px;
-
 }
 
 .adminhome-button:hover {

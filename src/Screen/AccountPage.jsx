@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function AccountPage() {
-    const navigate = useNavigate(); // Initialize the navigate hook
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -12,17 +12,14 @@ function AccountPage() {
         if (storedUser) {
             setUserData(storedUser);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ใน localStorage นำทางไปที่หน้า login
             navigate('/first');
         }
     }, [navigate]);
 
     const toggleDropdown = () => {
         if (userData.user) {
-            // ถ้ามีข้อมูลผู้ใช้ให้แสดง dropdown
             setShowDropdown(!showDropdown);
         } else {
-            // ถ้าไม่มีข้อมูลผู้ใช้ให้ไปหน้า login
             navigate('/login');
         }
     };
@@ -33,16 +30,14 @@ function AccountPage() {
         navigate('/detailbooking');
     };
 
-    // ฟังก์ชันจัดการ Logout
     const handleLogout = () => {
         // ลบข้อมูลผู้ใช้จาก localStorage
         localStorage.removeItem('user');
-        // นำทางกลับไปหน้า login
         navigate('/first');
     };
- 
+
     const handleNavClick = (path) => {
-        navigate(path); // Navigate to the given path
+        navigate(path);
     };
     return (
         <div className='account-container'>
@@ -56,8 +51,6 @@ function AccountPage() {
                     <li className="navItem"><a href="#chef" onClick={() => handleNavClick('/chefpage')}>Chef</a></li>
                     <li className="navItem"><a href="#settime" onClick={() => handleNavClick('/settime')}>Table Booking</a></li>
                 </ul>
-                {/* <button className="home-tag">{userData.user}</button> */}
-                {/* แสดงชื่อผู้ใช้และปุ่ม Logout */}
                 <div className="dropdown-account">
                     <button className="account-tag" onClick={toggleDropdown}>
                         {userData.user || "LOGIN"}
