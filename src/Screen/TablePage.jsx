@@ -111,7 +111,7 @@ function TablePage() {
       </nav>
 
       <div className="table-reservation">
-        <h2>Reserve a Table</h2>
+        <h2>Reserve a Table <p>{" วันที่ต้องการจอง : "+ day +"  เวลา : "+ time}</p>  </h2>
         <div className="table-grid">
           {['A-01', 'A-02', 'A-03', 'A-04', 'B-01', 'B-02', 'B-03', 'B-04',
             'C-01', 'C-02', 'C-03', 'C-04', 'D-01', 'D-02', 'D-03', 'D-04',
