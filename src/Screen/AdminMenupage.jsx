@@ -195,9 +195,9 @@ function AdminMenupage() {
             <span>{item.price}</span>
             <p>{item.status}</p>
             <div className="btt-Container">
-              <button className="editbtt" onClick={() => handleedit(index)}>edit</button>
+              <button className="editbtt" onClick={() => handleedit(index)}>Edit</button>
               <button className="statusbtt" onClick={() => handonclick(index)}>{item.status}</button>
-              <button className="statusbtt" onClick={() => deleteMenu(index)}>Delete</button>
+              <button className="deletbtt" onClick={() => deleteMenu(index)}>Delete</button>
             </div>
           </div>
         ))}

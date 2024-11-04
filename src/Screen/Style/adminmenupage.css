@@ -156,8 +156,8 @@ body {
 }
 
 .statusbtt,
-.editbtt {
-  padding: 10px 20px;
+.editbtt,.deletbtt {
+  padding: 10px 15px;
   border: none;
   border-radius: 25px;
   font-size: 15px;
