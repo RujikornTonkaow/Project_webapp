@@ -147,6 +147,44 @@ app.post("/register", (req, res) => {
 });
 
 
+app.post("/addmenu", (req, res) => {
+  const { name, price, status, img } = req.body;
+
+  // Check if all required fields are provided
+  if (!name || !price || !status || !img) {
+    return res.status(400).json({ error: "Please provide all required fields" });
+  }
+
+  // Insert new menu item into the database
+  const query = "INSERT INTO menudb_dtp (name, price, status, img) VALUES (?, ?, ?, ?)";
+
+  db.query(query, [name, price, status, img], (err, results) => {
+    if (err) {
+      console.error("Error inserting data into MySQL:", err);
+      return res.status(500).json({ error: "Failed to add menu item" });
+    }
+    res.status(200).json({ message: "Menu item added successfully", item: { name, price, status, img } });
+  });
+});
+
+app.delete("/deleteMenu/:id", (req, res) => {
+  const { id } = req.params;
+
+  // Query สำหรับลบข้อมูลเมนู
+  const query = "DELETE FROM menudb_dtp WHERE id = ?";
+
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting data from MySQL:", err);
+      return res.status(500).json({ error: "Failed to delete menu item" });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Menu item not found" });
+    }
+    res.status(200).json({ message: "Menu item deleted successfully" });
+  });
+});
+
 app.post('/login', (req, res) => {
   const { user, password } = req.body;
   console.log('Username:', user, 'Password:', password);

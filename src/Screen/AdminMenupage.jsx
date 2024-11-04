@@ -10,21 +10,25 @@ function AdminMenupage() {
   const [menu, setMenu] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const [newMenu, setNewMenu] = useState({
+    name: "",
+    price: "",
+    status: "Available",
+    img: ""
+  });
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       setUserData(storedUser);
-    } else {
     }
+
     axios.get('http://localhost:5000/configmenu')
       .then(response => {
-
         const updatedMenu = response.data.map(item => ({
           ...item
         }));
         setMenu(updatedMenu);
-        console.log(updatedMenu);
-
       })
       .catch(error => {
         console.error('Error fetching menu data:', error);
@@ -55,31 +59,13 @@ function AdminMenupage() {
     localStorage.removeItem('user');
     navigate('/first');
   };
-  const handonclick = (index) => {
 
-    setMenu(prevMenu => {
-      const newMenu = prevMenu.map((item, i) =>
-        i === index ? { ...item, status: item.status === 'Available' ? 'Sold_out' : 'Available' } : item
-      );
-      const updatedItem = newMenu[index];
-
-      axios.put(`http://localhost:5000/updateMenuStatus/${updatedItem.id}`, { status: updatedItem.status })
-        .then(response => {
-          console.log('Status updated successfully:', response.data);
-        })
-        .catch(error => {
-          console.error('Error updating status:', error);
-        });
-
-      return newMenu;
-    });
-  };
   const handleedit = (index) => {
     const item = menu[index];
     Swal.fire({
-      title: "แก้ไขราคาของ " + item.name,
+      title: `Edit price of ${item.name}`,
       input: 'number',
-      inputLabel: item.name + " " + item.price,
+      inputLabel: `${item.name} current price: ${item.price}`,
       inputValue: item.price,
       showCancelButton: true,
       confirmButtonText: 'Save',
@@ -108,6 +94,71 @@ function AdminMenupage() {
       }
     });
   };
+
+  const handonclick = (index) => {
+    setMenu(prevMenu => {
+      const newMenu = prevMenu.map((item, i) =>
+        i === index ? { ...item, status: item.status === 'Available' ? 'Sold_out' : 'Available' } : item
+      );
+      const updatedItem = newMenu[index];
+
+      axios.put(`http://localhost:5000/updateMenuStatus/${updatedItem.id}`, { status: updatedItem.status })
+        .then(response => {
+          console.log('Status updated successfully:', response.data);
+        })
+        .catch(error => {
+          console.error('Error updating status:', error);
+        });
+
+      return newMenu;
+    });
+  };
+
+  const handleAddMenuItem = () => {
+    const { name, price, status, img } = newMenu;
+
+    if (!name || !price || !status || !img) {
+      Swal.fire('Error', 'Please fill in all fields', 'error');
+      return;
+    }
+
+    axios.post('http://localhost:5000/addmenu', newMenu)
+      .then(response => {
+        setMenu(prevMenu => [...prevMenu, response.data.item]);
+        Swal.fire('Success', 'New menu item added successfully!', 'success')
+          .then(() => {
+            window.location.reload(); // ทำการรีเฟรชหลังจากกด OK
+          });
+        setNewMenu({ name: "", price: "", status: "Available", img: "" });
+      })
+      .catch(error => {
+        console.error('Error adding new menu item:', error);
+        Swal.fire('Error', 'Failed to add new menu item', 'error');
+      });
+};
+
+  const deleteMenu = (index) => {
+    const item = menu[index];
+    Swal.fire({
+      title: `Are you sure you want to delete ${item.name}?`,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      confirmButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/deleteMenu/${item.id}`)
+          .then(response => {
+            setMenu(prevMenu => prevMenu.filter((_, i) => i !== index));
+            Swal.fire('Deleted!', `${item.name} has been deleted.`, 'success');
+          })
+          .catch(error => {
+            console.error('Error deleting menu item:', error);
+            Swal.fire('Error', 'Failed to delete menu item', 'error');
+          });
+      }
+    });
+  };
+
   return (
     <div className="adminmenu-container">
       <nav className="adminmenu-nav">
@@ -137,9 +188,8 @@ function AdminMenupage() {
       </nav>
 
       <section className="adminmenu-items">
-        {menu.slice(0, 8).map((item, index) => (
-          <div key={index} className={`adminmenu-item ${item.status === 'Sold_out' ? 'sold-out' : ''}`}
-          >
+        {menu.map((item, index) => (
+          <div key={index} className={`adminmenu-item ${item.status === 'Sold_out' ? 'sold-out' : ''}`}>
             <img src={`${item.img}`} alt={item.name} />
             <div>{item.name}</div>
             <span>{item.price}</span>
@@ -147,10 +197,42 @@ function AdminMenupage() {
             <div className="btt-Container">
               <button className="editbtt" onClick={() => handleedit(index)}>edit</button>
               <button className="statusbtt" onClick={() => handonclick(index)}>{item.status}</button>
+              <button className="statusbtt" onClick={() => deleteMenu(index)}>Delete</button>
             </div>
           </div>
         ))}
       </section>
+
+      <div className="add-menu-item">
+        <input
+          type="text"
+          className="statusbtt"
+          placeholder="Enter Menu Name"
+          value={newMenu.name}
+          onChange={(e) => setNewMenu({ ...newMenu, name: e.target.value })}
+          
+        />
+        <input
+          type="number"
+          className="statusbtt"
+          placeholder="Enter Price (e.g., '100')"
+          value={newMenu.price.replace(' THB', '')} // แสดงเฉพาะตัวเลขใน input
+          onChange={(e) => {
+            const value = e.target.value.replace(' THB', ''); // เอา "THB" ออกจาก input
+            setNewMenu({ ...newMenu, price: value ? `${value} THB` : '' }); // เพิ่ม "THB" เมื่อมีค่า
+            
+          }}
+        />
+        <input
+          type="text"
+          className="statusbtt"
+          placeholder="Enter Image URL"
+          value={newMenu.img}
+          onChange={(e) => setNewMenu({ ...newMenu, img: e.target.value })}
+          
+        />
+        <button className="statusbtt" onClick={handleAddMenuItem}>Add Menu Item</button>
+      </div>
     </div>
   );
 }
