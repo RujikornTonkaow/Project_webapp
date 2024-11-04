@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function AdminAccountPage() {
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
+    const [userData, setUserData] = useState({ user: '', tel: '', role: '',point:'' });
     const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {

@@ -199,11 +199,9 @@ app.post('/login', (req, res) => {
       console.error('Error querying database:', err);
       return res.status(500).json({ error: 'Database query failed' });
     }
-
     if (results.length === 0) {
       return res.status(404).json({ error: 'User not found' });
     }
-
     const userData = results[0];
     const storedHashedPassword = userData.password;
     console.log('Stored hashed password from DB:', storedHashedPassword);
@@ -223,7 +221,9 @@ app.post('/login', (req, res) => {
           message: 'Login successful',
           user: userData.user,
           role: userData.role,
-          tel: userData.tel
+          tel: userData.tel,
+          point: userData.point
+          
         });
       } else {
         return res.status(401).json({ error: 'Incorrect password' });

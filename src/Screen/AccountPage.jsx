@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function AccountPage() {
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
+    const [userData, setUserData] = useState({ user: '', tel: '', role: '',point:'' });
     const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {
@@ -74,6 +74,9 @@ function AccountPage() {
                 </div>
                 <div className='form-box'>
                     <h3>Phone Number  :  {userData.tel} </h3>
+                </div>
+                <div className='form-box'>
+                    <h3>Point  :  {userData.point} </h3>
                 </div>
                 <button className='button-history' onClick={goToBookingHistory}>Booking History</button>
 

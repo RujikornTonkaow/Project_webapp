@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 function HomePage() {
     const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState(false);
-    const [userData, setUserData] = useState({ user: '', tel: '', role: '' });
+    const [userData, setUserData] = useState({ user: '', tel: '', role: '',point:'' });
+
+    console.log(userData);
 
     const handleNavClick = (path) => {
         navigate(path);
